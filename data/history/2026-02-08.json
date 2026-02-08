@@ -1,6 +1,6 @@
 {
   "BTC": {
-    "price": 70332,
+    "price": 70617,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -9,7 +9,7 @@
     "bybit_short": 0
   },
   "ETH": {
-    "price": 2108.64,
+    "price": 2114.07,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -18,7 +18,7 @@
     "bybit_short": 0
   },
   "BNB": {
-    "price": 648.11,
+    "price": 649.5,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -36,7 +36,7 @@
     "bybit_short": 0
   },
   "SOL": {
-    "price": 88.37,
+    "price": 88.44,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -45,7 +45,7 @@
     "bybit_short": 0
   },
   "TRX": {
-    "price": 0.277628,
+    "price": 0.277601,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -54,7 +54,7 @@
     "bybit_short": 0
   },
   "DOGE": {
-    "price": 0.098335,
+    "price": 0.098405,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -72,7 +72,7 @@
     "bybit_short": 0
   },
   "WBT": {
-    "price": 53.52,
+    "price": 53.61,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -81,7 +81,7 @@
     "bybit_short": 0
   },
   "BCH": {
-    "price": 530.8,
+    "price": 530.1,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -90,7 +90,7 @@
     "bybit_short": 0
   },
   "ADA": {
-    "price": 0.274929,
+    "price": 0.275075,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -99,7 +99,7 @@
     "bybit_short": 0
   },
   "HYPE": {
-    "price": 31.37,
+    "price": 31.42,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -108,7 +108,7 @@
     "bybit_short": 0
   },
   "CC": {
-    "price": 0.170827,
+    "price": 0.171842,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -117,7 +117,7 @@
     "bybit_short": 0
   },
   "LINK": {
-    "price": 8.94,
+    "price": 8.95,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -126,7 +126,7 @@
     "bybit_short": 0
   },
   "XMR": {
-    "price": 326.25,
+    "price": 327.41,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -135,7 +135,7 @@
     "bybit_short": 0
   },
   "USD1": {
-    "price": 1.0,
+    "price": 1.001,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -144,7 +144,7 @@
     "bybit_short": 0
   },
   "XLM": {
-    "price": 0.1627,
+    "price": 0.162691,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -153,7 +153,7 @@
     "bybit_short": 0
   },
   "LTC": {
-    "price": 55.57,
+    "price": 55.59,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -162,7 +162,7 @@
     "bybit_short": 0
   },
   "ZEC": {
-    "price": 242.04,
+    "price": 242.46,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -180,7 +180,7 @@
     "bybit_short": 0
   },
   "HBAR": {
-    "price": 0.091037,
+    "price": 0.091709,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -189,7 +189,7 @@
     "bybit_short": 0
   },
   "SUI": {
-    "price": 1.004,
+    "price": 1.005,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -198,7 +198,7 @@
     "bybit_short": 0
   },
   "SHIB": {
-    "price": 6.27e-06,
+    "price": 6.26e-06,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -216,7 +216,7 @@
     "bybit_short": 0
   },
   "RAIN": {
-    "price": 0.00924717,
+    "price": 0.00923824,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -225,7 +225,7 @@
     "bybit_short": 0
   },
   "WLFI": {
-    "price": 0.100423,
+    "price": 0.100311,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -234,7 +234,7 @@
     "bybit_short": 0
   },
   "M": {
-    "price": 1.49,
+    "price": 1.51,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -243,7 +243,7 @@
     "bybit_short": 0
   },
   "XAUT": {
-    "price": 4974.27,
+    "price": 4974.89,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -252,7 +252,7 @@
     "bybit_short": 0
   },
   "PAXG": {
-    "price": 5012.66,
+    "price": 5013.24,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -279,7 +279,7 @@
     "bybit_short": 0
   },
   "MNT": {
-    "price": 0.646167,
+    "price": 0.64732,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -306,7 +306,7 @@
     "bybit_short": 0
   },
   "USDF": {
-    "price": 0.996655,
+    "price": 0.996956,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -315,7 +315,7 @@
     "bybit_short": 0
   },
   "AAVE": {
-    "price": 113.71,
+    "price": 113.93,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -342,7 +342,7 @@
     "bybit_short": 0
   },
   "TAO": {
-    "price": 165.59,
+    "price": 166.07,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -351,7 +351,7 @@
     "bybit_short": 0
   },
   "USDG": {
-    "price": 0.999811,
+    "price": 0.99967,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -360,7 +360,7 @@
     "bybit_short": 0
   },
   "SKY": {
-    "price": 0.066121,
+    "price": 0.066128,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -378,7 +378,7 @@
     "bybit_short": 0
   },
   "ASTER": {
-    "price": 0.590713,
+    "price": 0.595544,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -414,7 +414,7 @@
     "bybit_short": 0
   },
   "BFUSD": {
-    "price": 0.999017,
+    "price": 0.998941,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -423,7 +423,7 @@
     "bybit_short": 0
   },
   "PI": {
-    "price": 0.145583,
+    "price": 0.145839,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -432,7 +432,7 @@
     "bybit_short": 0
   },
   "ONDO": {
-    "price": 0.262015,
+    "price": 0.261902,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
@@ -441,7 +441,7 @@
     "bybit_short": 0
   },
   "PUMP": {
-    "price": 0.00214497,
+    "price": 0.00214813,
     "binance_global_long": 0,
     "binance_global_short": 0,
     "binance_top_long": 0,
