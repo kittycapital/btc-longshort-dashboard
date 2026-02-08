@@ -1,0 +1,35 @@
+name: Update Long/Short Ratio Data
+
+on:
+  schedule:
+    # 6 times daily: 01:00, 05:00, 09:00, 13:00, 17:00, 21:00 UTC
+    # = 10:00, 14:00, 18:00, 22:00, 02:00, 06:00 KST
+    - cron: '0 1,5,9,13,17,21 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Fetch Long/Short Data
+        run: python fetch_longshort.py
+        timeout-minutes: 10
+
+      - name: Commit & Push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/coins.json data/history/
+          git diff --staged --quiet || git commit -m "📊 롱숏 데이터 업데이트 $(date -u '+%Y-%m-%d %H:%M') UTC"
+          git push
