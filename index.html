@@ -147,8 +147,8 @@ body {
   gap: 6px;
 }
 
-.signal-box.long-box h3 { color: var(--red); }
-.signal-box.short-box h3 { color: var(--green); }
+.signal-box.long-box h3 { color: var(--green); }
+.signal-box.short-box h3 { color: var(--red); }
 
 .signal-item {
   display: flex;
@@ -239,7 +239,7 @@ body {
 .coin-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 12px;
+  font-size: 13px;
   min-width: 700px;
 }
 
@@ -265,8 +265,9 @@ body {
   border-bottom: 1px solid var(--border);
   text-align: right;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
+  font-size: 13px;
   white-space: nowrap;
+  color: var(--text-primary);
 }
 
 .coin-table td:first-child {
@@ -291,15 +292,15 @@ body {
 }
 
 .coin-cell img { width: 22px; height: 22px; border-radius: 50%; }
-.coin-cell .symbol { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 13px; }
-.coin-cell .name { color: var(--text-muted); font-size: 11px; margin-left: 4px; }
+.coin-cell .symbol { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 13px; color: var(--text-primary); }
+.coin-cell .name { color: var(--text-secondary); font-size: 11px; margin-left: 4px; }
 
 .pos { color: var(--green); }
 .neg { color: var(--red); }
 .neutral-color { color: var(--text-secondary); }
 
-.long-pct { color: var(--red); font-weight: 500; }
-.short-pct { color: var(--green); font-weight: 500; }
+.long-pct { color: var(--green); font-weight: 500; }
+.short-pct { color: var(--red); font-weight: 500; }
 
 .signal-badge {
   display: inline-block;
@@ -309,10 +310,10 @@ body {
   font-weight: 600;
   font-family: 'Noto Sans KR', sans-serif;
 }
-.signal-badge.extreme_long { background: var(--red-dim); color: var(--red); }
-.signal-badge.long { background: #ff3d7118; color: #ff6b8a; }
-.signal-badge.extreme_short { background: var(--green-dim); color: var(--green); }
-.signal-badge.short { background: #00d68f18; color: #33e0a8; }
+.signal-badge.extreme_long { background: var(--green-dim); color: var(--green); }
+.signal-badge.long { background: #00d68f18; color: #33e0a8; }
+.signal-badge.extreme_short { background: var(--red-dim); color: var(--red); }
+.signal-badge.short { background: #ff3d7118; color: #ff6b8a; }
 .signal-badge.neutral { background: transparent; color: var(--text-muted); }
 
 /* ─── Mini LS Bar ─── */
@@ -324,14 +325,14 @@ body {
 .ls-bar .bar-track {
   width: 60px;
   height: 5px;
-  background: var(--green-dim);
+  background: var(--red-dim);
   border-radius: 3px;
   overflow: hidden;
   position: relative;
 }
 .ls-bar .bar-long {
   height: 100%;
-  background: var(--red);
+  background: var(--green);
   border-radius: 3px 0 0 3px;
   transition: width 0.4s;
 }
@@ -420,7 +421,7 @@ body {
 @media (max-width: 500px) {
   .header h1 { font-size: 17px; }
   .header-meta { font-size: 10px; }
-  .coin-table { font-size: 11px; }
+  .coin-table { font-size: 12px; }
   .period-btn { padding: 8px 14px; font-size: 13px; }
   .chart-container { height: 230px; }
   .detail-coin { font-size: 16px; }
@@ -535,11 +536,11 @@ function renderSignalBanner(coins) {
 
   let html = `
     <div class="signal-box long-box">
-      <h3>🔴 롱 과밀 TOP 5</h3>
+      <h3>🟢 롱 과밀 TOP 5</h3>
       ${topLong.map(c => renderSignalItem(c, 'long')).join('')}
     </div>
     <div class="signal-box short-box">
-      <h3>🟢 숏 과밀 TOP 5</h3>
+      <h3>🔴 숏 과밀 TOP 5</h3>
       ${topShort.map(c => renderSignalItem(c, 'short')).join('')}
     </div>
   `;
@@ -549,8 +550,8 @@ function renderSignalBanner(coins) {
 function renderSignalItem(coin, type) {
   const longPct = coin.binance?.global_account?.long || 0.5;
   const displayPct = type === 'long' ? longPct : (1 - longPct);
-  const barColor = type === 'long' ? 'var(--red)' : 'var(--green)';
-  const pctColor = type === 'long' ? 'var(--red)' : 'var(--green)';
+  const barColor = type === 'long' ? 'var(--green)' : 'var(--red)';
+  const pctColor = type === 'long' ? 'var(--green)' : 'var(--red)';
 
   return `
     <div class="signal-item" onclick="selectCoin('${coin.symbol}')">
@@ -593,9 +594,9 @@ function renderCoinTable(coins) {
     const priceCls = (c.price_change_24h || 0) >= 0 ? 'pos' : 'neg';
     const signal = c.signal || 'neutral';
     const signalText = {
-      extreme_long: '🔴 극단 롱',
+      extreme_long: '🟢 극단 롱',
       long: '롱 과밀',
-      extreme_short: '🟢 극단 숏',
+      extreme_short: '🔴 극단 숏',
       short: '숏 과밀',
       neutral: '-'
     }[signal];
@@ -740,8 +741,8 @@ function selectCoin(symbol) {
         {
           label: '롱 비율',
           data: filtered.map(h => h.long * 100),
-          borderColor: '#ff3d71',
-          backgroundColor: '#ff3d7120',
+          borderColor: '#00d68f',
+          backgroundColor: '#00d68f20',
           fill: true,
           tension: 0.3,
           pointRadius: 0,
@@ -752,8 +753,8 @@ function selectCoin(symbol) {
         {
           label: '숏 비율',
           data: filtered.map(h => h.short * 100),
-          borderColor: '#00d68f',
-          backgroundColor: '#00d68f20',
+          borderColor: '#ff3d71',
+          backgroundColor: '#ff3d7120',
           fill: true,
           tension: 0.3,
           pointRadius: 0,
