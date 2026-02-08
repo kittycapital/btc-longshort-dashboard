@@ -69,7 +69,7 @@ def get_top_coins():
 def get_binance_futures_symbols():
     """Binance USDT 무기한 선물 심볼 목록"""
     print("[2/5] Binance 선물 심볼 확인...")
-    url = "https://fapi.binance.com/fapi/v1/exchangeInfo"
+    url = "https://fapi.binance.me/fapi/v1/exchangeInfo"
     data = api_get(url)
     if not data:
         return set()
@@ -95,7 +95,7 @@ def get_binance_longshort(symbol, period="1h", limit=1):
     result = {}
 
     # 1. Top Trader Account Ratio
-    url = f"https://fapi.binance.com/futures/data/topLongShortAccountRatio?symbol={pair}&period={period}&limit={limit}"
+    url = f"https://fapi.binance.me/futures/data/topLongShortAccountRatio?symbol={pair}&period={period}&limit={limit}"
     data = api_get(url, retries=2, delay=1)
     if data and len(data) > 0:
         result["top_account"] = {
@@ -105,7 +105,7 @@ def get_binance_longshort(symbol, period="1h", limit=1):
         }
 
     # 2. Top Trader Position Ratio
-    url = f"https://fapi.binance.com/futures/data/topLongShortPositionRatio?symbol={pair}&period={period}&limit={limit}"
+    url = f"https://fapi.binance.me/futures/data/topLongShortPositionRatio?symbol={pair}&period={period}&limit={limit}"
     data = api_get(url, retries=2, delay=1)
     if data and len(data) > 0:
         result["top_position"] = {
@@ -115,7 +115,7 @@ def get_binance_longshort(symbol, period="1h", limit=1):
         }
 
     # 3. Global Account Ratio
-    url = f"https://fapi.binance.com/futures/data/globalLongShortAccountRatio?symbol={pair}&period={period}&limit={limit}"
+    url = f"https://fapi.binance.me/futures/data/globalLongShortAccountRatio?symbol={pair}&period={period}&limit={limit}"
     data = api_get(url, retries=2, delay=1)
     if data and len(data) > 0:
         result["global_account"] = {
@@ -146,7 +146,7 @@ def get_bybit_longshort(symbol, period="1h", limit=1):
 def get_binance_history(symbol, period="4h", limit=500):
     """Binance 롱숏 히스토리 (최대 30일)"""
     pair = f"{symbol}USDT"
-    url = f"https://fapi.binance.com/futures/data/topLongShortAccountRatio?symbol={pair}&period={period}&limit={limit}"
+    url = f"https://fapi.binance.me/futures/data/topLongShortAccountRatio?symbol={pair}&period={period}&limit={limit}"
     data = api_get(url, retries=2, delay=1)
     if not data:
         return []
