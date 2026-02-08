@@ -1,0 +1,212 @@
+{
+  "updated_at": "2026-02-08T14:00:00Z",
+  "coins": [
+    {
+      "id": "bitcoin", "symbol": "BTC", "name": "Bitcoin", "price": 97250.00, "price_change_24h": -2.3,
+      "market_cap": 1920000000000, "market_cap_rank": 1,
+      "image": "https://assets.coingecko.com/coins/images/1/small/bitcoin.png",
+      "binance": {
+        "top_account": {"long": 0.5124, "short": 0.4876, "ratio": 1.0509},
+        "top_position": {"long": 0.5432, "short": 0.4568, "ratio": 1.1892},
+        "global_account": {"long": 0.5589, "short": 0.4411, "ratio": 1.267}
+      },
+      "bybit": {"long": 0.5340, "short": 0.4660, "ratio": 1.1459},
+      "signal": "neutral", "signal_strength": 12
+    },
+    {
+      "id": "ethereum", "symbol": "ETH", "name": "Ethereum", "price": 2680.00, "price_change_24h": -3.8,
+      "market_cap": 322000000000, "market_cap_rank": 2,
+      "image": "https://assets.coingecko.com/coins/images/279/small/ethereum.png",
+      "binance": {
+        "top_account": {"long": 0.5678, "short": 0.4322, "ratio": 1.3136},
+        "top_position": {"long": 0.5891, "short": 0.4109, "ratio": 1.4333},
+        "global_account": {"long": 0.5821, "short": 0.4179, "ratio": 1.3929}
+      },
+      "bybit": {"long": 0.5590, "short": 0.4410, "ratio": 1.2676},
+      "signal": "long", "signal_strength": 16
+    },
+    {
+      "id": "ripple", "symbol": "XRP", "name": "XRP", "price": 2.42, "price_change_24h": 1.2,
+      "market_cap": 140000000000, "market_cap_rank": 3,
+      "image": "https://assets.coingecko.com/coins/images/44/small/xrp-symbol-white-128.png",
+      "binance": {
+        "top_account": {"long": 0.6234, "short": 0.3766, "ratio": 1.6557},
+        "top_position": {"long": 0.6102, "short": 0.3898, "ratio": 1.5651},
+        "global_account": {"long": 0.6450, "short": 0.3550, "ratio": 1.8169}
+      },
+      "bybit": {"long": 0.6120, "short": 0.3880, "ratio": 1.5773},
+      "signal": "long", "signal_strength": 29
+    },
+    {
+      "id": "solana", "symbol": "SOL", "name": "Solana", "price": 195.50, "price_change_24h": -1.5,
+      "market_cap": 96000000000, "market_cap_rank": 4,
+      "image": "https://assets.coingecko.com/coins/images/4128/small/solana.png",
+      "binance": {
+        "top_account": {"long": 0.4890, "short": 0.5110, "ratio": 0.9569},
+        "top_position": {"long": 0.4756, "short": 0.5244, "ratio": 0.9070},
+        "global_account": {"long": 0.4720, "short": 0.5280, "ratio": 0.8939}
+      },
+      "bybit": {"long": 0.4850, "short": 0.5150, "ratio": 0.9417},
+      "signal": "neutral", "signal_strength": 6
+    },
+    {
+      "id": "binancecoin", "symbol": "BNB", "name": "BNB", "price": 585.00, "price_change_24h": -0.8,
+      "market_cap": 85000000000, "market_cap_rank": 5,
+      "image": "https://assets.coingecko.com/coins/images/825/small/bnb-icon2_2x.png",
+      "binance": {
+        "top_account": {"long": 0.5234, "short": 0.4766, "ratio": 1.0982},
+        "top_position": {"long": 0.5345, "short": 0.4655, "ratio": 1.1482},
+        "global_account": {"long": 0.5380, "short": 0.4620, "ratio": 1.1645}
+      },
+      "bybit": {"long": 0.5210, "short": 0.4790, "ratio": 1.0877},
+      "signal": "neutral", "signal_strength": 8
+    },
+    {
+      "id": "dogecoin", "symbol": "DOGE", "name": "Dogecoin", "price": 0.252, "price_change_24h": 4.2,
+      "market_cap": 37000000000, "market_cap_rank": 6,
+      "image": "https://assets.coingecko.com/coins/images/5/small/dogecoin.png",
+      "binance": {
+        "top_account": {"long": 0.7120, "short": 0.2880, "ratio": 2.4722},
+        "top_position": {"long": 0.6890, "short": 0.3110, "ratio": 2.2154},
+        "global_account": {"long": 0.7234, "short": 0.2766, "ratio": 2.6153}
+      },
+      "bybit": {"long": 0.6950, "short": 0.3050, "ratio": 2.2787},
+      "signal": "extreme_long", "signal_strength": 45
+    },
+    {
+      "id": "cardano", "symbol": "ADA", "name": "Cardano", "price": 0.78, "price_change_24h": 2.1,
+      "market_cap": 28000000000, "market_cap_rank": 7,
+      "image": "https://assets.coingecko.com/coins/images/975/small/cardano.png",
+      "binance": {
+        "top_account": {"long": 0.6678, "short": 0.3322, "ratio": 2.0108},
+        "top_position": {"long": 0.6534, "short": 0.3466, "ratio": 1.8853},
+        "global_account": {"long": 0.6890, "short": 0.3110, "ratio": 2.2154}
+      },
+      "bybit": {"long": 0.6720, "short": 0.3280, "ratio": 2.0488},
+      "signal": "long", "signal_strength": 38
+    },
+    {
+      "id": "avalanche-2", "symbol": "AVAX", "name": "Avalanche", "price": 25.80, "price_change_24h": -4.1,
+      "market_cap": 10500000000, "market_cap_rank": 12,
+      "image": "https://assets.coingecko.com/coins/images/12559/small/Avalanche_Circle_RedWhite_Trans.png",
+      "binance": {
+        "top_account": {"long": 0.3890, "short": 0.6110, "ratio": 0.6367},
+        "top_position": {"long": 0.4012, "short": 0.5988, "ratio": 0.6701},
+        "global_account": {"long": 0.3650, "short": 0.6350, "ratio": 0.5748}
+      },
+      "bybit": {"long": 0.3780, "short": 0.6220, "ratio": 0.6077},
+      "signal": "short", "signal_strength": 27
+    },
+    {
+      "id": "chainlink", "symbol": "LINK", "name": "Chainlink", "price": 18.50, "price_change_24h": -1.9,
+      "market_cap": 12000000000, "market_cap_rank": 11,
+      "image": "https://assets.coingecko.com/coins/images/877/small/chainlink-new-logo.png",
+      "binance": {
+        "top_account": {"long": 0.3456, "short": 0.6544, "ratio": 0.5281},
+        "top_position": {"long": 0.3678, "short": 0.6322, "ratio": 0.5818},
+        "global_account": {"long": 0.3210, "short": 0.6790, "ratio": 0.4727}
+      },
+      "bybit": {"long": 0.3340, "short": 0.6660, "ratio": 0.5015},
+      "signal": "extreme_short", "signal_strength": 36
+    },
+    {
+      "id": "polkadot", "symbol": "DOT", "name": "Polkadot", "price": 5.12, "price_change_24h": -2.7,
+      "market_cap": 7800000000, "market_cap_rank": 14,
+      "image": "https://assets.coingecko.com/coins/images/12171/small/polkadot.png",
+      "binance": {
+        "top_account": {"long": 0.4123, "short": 0.5877, "ratio": 0.7016},
+        "top_position": {"long": 0.4234, "short": 0.5766, "ratio": 0.7342},
+        "global_account": {"long": 0.3980, "short": 0.6020, "ratio": 0.6611}
+      },
+      "bybit": {"long": 0.4050, "short": 0.5950, "ratio": 0.6807},
+      "signal": "short", "signal_strength": 20
+    },
+    {
+      "id": "sui", "symbol": "SUI", "name": "Sui", "price": 3.25, "price_change_24h": 5.8,
+      "market_cap": 10200000000, "market_cap_rank": 13,
+      "image": "https://assets.coingecko.com/coins/images/26375/small/sui_asset.jpeg",
+      "binance": {
+        "top_account": {"long": 0.7340, "short": 0.2660, "ratio": 2.7594},
+        "top_position": {"long": 0.7120, "short": 0.2880, "ratio": 2.4722},
+        "global_account": {"long": 0.7456, "short": 0.2544, "ratio": 2.9308}
+      },
+      "bybit": {"long": 0.7210, "short": 0.2790, "ratio": 2.5842},
+      "signal": "extreme_long", "signal_strength": 49
+    },
+    {
+      "id": "pepe", "symbol": "PEPE", "name": "Pepe", "price": 0.00001125, "price_change_24h": 8.3,
+      "market_cap": 4700000000, "market_cap_rank": 20,
+      "image": "https://assets.coingecko.com/coins/images/29850/small/pepe-token.jpeg",
+      "binance": {
+        "top_account": {"long": 0.7560, "short": 0.2440, "ratio": 3.0984},
+        "top_position": {"long": 0.7345, "short": 0.2655, "ratio": 2.7665},
+        "global_account": {"long": 0.7680, "short": 0.2320, "ratio": 3.3103}
+      },
+      "bybit": {"long": 0.7430, "short": 0.2570, "ratio": 2.8910},
+      "signal": "extreme_long", "signal_strength": 54
+    },
+    {
+      "id": "near", "symbol": "NEAR", "name": "NEAR Protocol", "price": 3.45, "price_change_24h": -3.2,
+      "market_cap": 4200000000, "market_cap_rank": 22,
+      "image": "https://assets.coingecko.com/coins/images/10365/small/near.jpg",
+      "binance": {
+        "top_account": {"long": 0.2980, "short": 0.7020, "ratio": 0.4245},
+        "top_position": {"long": 0.3120, "short": 0.6880, "ratio": 0.4535},
+        "global_account": {"long": 0.2850, "short": 0.7150, "ratio": 0.3986}
+      },
+      "bybit": {"long": 0.2920, "short": 0.7080, "ratio": 0.4124},
+      "signal": "extreme_short", "signal_strength": 43
+    },
+    {
+      "id": "arbitrum", "symbol": "ARB", "name": "Arbitrum", "price": 0.58, "price_change_24h": -5.1,
+      "market_cap": 3100000000, "market_cap_rank": 30,
+      "image": "https://assets.coingecko.com/coins/images/16547/small/photo_2023-03-29_21.47.00.jpeg",
+      "binance": {
+        "top_account": {"long": 0.3210, "short": 0.6790, "ratio": 0.4727},
+        "top_position": {"long": 0.3345, "short": 0.6655, "ratio": 0.5026},
+        "global_account": {"long": 0.3120, "short": 0.6880, "ratio": 0.4535}
+      },
+      "bybit": {"long": 0.3180, "short": 0.6820, "ratio": 0.4663},
+      "signal": "extreme_short", "signal_strength": 38
+    },
+    {
+      "id": "optimism", "symbol": "OP", "name": "Optimism", "price": 1.12, "price_change_24h": -2.4,
+      "market_cap": 2000000000, "market_cap_rank": 38,
+      "image": "https://assets.coingecko.com/coins/images/25244/small/Optimism.png",
+      "binance": {
+        "top_account": {"long": 0.4560, "short": 0.5440, "ratio": 0.8382},
+        "top_position": {"long": 0.4678, "short": 0.5322, "ratio": 0.8790},
+        "global_account": {"long": 0.4430, "short": 0.5570, "ratio": 0.7954}
+      },
+      "bybit": {"long": 0.4510, "short": 0.5490, "ratio": 0.8215},
+      "signal": "neutral", "signal_strength": 11
+    }
+  ],
+  "histories": {
+    "BTC": [
+      {"timestamp": "2026-02-07 00:00", "long": 0.5634, "short": 0.4366, "ratio": 1.2906},
+      {"timestamp": "2026-02-07 04:00", "long": 0.5589, "short": 0.4411, "ratio": 1.267},
+      {"timestamp": "2026-02-07 08:00", "long": 0.5512, "short": 0.4488, "ratio": 1.2282},
+      {"timestamp": "2026-02-07 12:00", "long": 0.5678, "short": 0.4322, "ratio": 1.3136},
+      {"timestamp": "2026-02-07 16:00", "long": 0.5745, "short": 0.4255, "ratio": 1.3501},
+      {"timestamp": "2026-02-07 20:00", "long": 0.5623, "short": 0.4377, "ratio": 1.2846},
+      {"timestamp": "2026-02-08 00:00", "long": 0.5534, "short": 0.4466, "ratio": 1.2392},
+      {"timestamp": "2026-02-08 04:00", "long": 0.5489, "short": 0.4511, "ratio": 1.2169},
+      {"timestamp": "2026-02-08 08:00", "long": 0.5612, "short": 0.4388, "ratio": 1.2789},
+      {"timestamp": "2026-02-08 12:00", "long": 0.5589, "short": 0.4411, "ratio": 1.267}
+    ],
+    "ETH": [
+      {"timestamp": "2026-02-07 00:00", "long": 0.5912, "short": 0.4088, "ratio": 1.4463},
+      {"timestamp": "2026-02-07 04:00", "long": 0.5856, "short": 0.4144, "ratio": 1.4131},
+      {"timestamp": "2026-02-07 08:00", "long": 0.5789, "short": 0.4211, "ratio": 1.3748},
+      {"timestamp": "2026-02-07 12:00", "long": 0.5834, "short": 0.4166, "ratio": 1.4003},
+      {"timestamp": "2026-02-07 16:00", "long": 0.5901, "short": 0.4099, "ratio": 1.4394},
+      {"timestamp": "2026-02-07 20:00", "long": 0.5845, "short": 0.4155, "ratio": 1.4068},
+      {"timestamp": "2026-02-08 00:00", "long": 0.5778, "short": 0.4222, "ratio": 1.3688},
+      {"timestamp": "2026-02-08 04:00", "long": 0.5812, "short": 0.4188, "ratio": 1.3878},
+      {"timestamp": "2026-02-08 08:00", "long": 0.5856, "short": 0.4144, "ratio": 1.4131},
+      {"timestamp": "2026-02-08 12:00", "long": 0.5821, "short": 0.4179, "ratio": 1.3929}
+    ]
+  },
+  "daily_history": {}
+}
