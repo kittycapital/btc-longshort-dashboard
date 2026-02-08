@@ -25,7 +25,8 @@
   --orange: #f0a030;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
-body { background: var(--bg-primary); color: var(--text-primary); font-family: 'Noto Sans KR', sans-serif; line-height: 1.6; }
+body { background: var(--bg-primary); color: var(--text-primary); font-family: 'Noto Sans KR', sans-serif; line-height: 1.6; scrollbar-width: none; -ms-overflow-style: none; }
+body::-webkit-scrollbar { display: none; }
 
 /* Header */
 .header { padding: 24px 28px 16px; border-bottom: 1px solid var(--border); background: linear-gradient(180deg, #0c0c14 0%, var(--bg-primary) 100%); }
@@ -50,7 +51,7 @@ body { background: var(--bg-primary); color: var(--text-primary); font-family: '
 
 /* Signal */
 .signal-banner { display:grid;grid-template-columns:1fr 1fr;gap:12px; }
-.signal-box { background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:16px 18px; }
+.signal-box { background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:16px 18px;overflow:hidden; }
 .signal-box h3 { font-size:12px;font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:6px; }
 .signal-box.long-box h3 { color:var(--green); }
 .signal-box.short-box h3 { color:var(--red); }
@@ -556,6 +557,7 @@ init();
 function postHeight(){const h=document.documentElement.scrollHeight;window.parent.postMessage({type:'resize',height:h},'*');window.parent.postMessage({height:h},'*');window.parent.postMessage(JSON.stringify({event:'setHeight',height:h}),'*');}
 new ResizeObserver(()=>postHeight()).observe(document.body);
 window.addEventListener('load',()=>setTimeout(postHeight,500));
+setInterval(postHeight, 2000);
 </script>
 </body>
 </html>

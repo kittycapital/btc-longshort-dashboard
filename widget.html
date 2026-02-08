@@ -8,7 +8,8 @@
 <style>
 :root { --bg:#08080d;--bg-card:#101018;--border:#1c1c2e;--text:#e8e8f0;--muted:#555570;--green:#00d68f;--red:#ff3d71; }
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif;scrollbar-width:none;-ms-overflow-style:none}
+body::-webkit-scrollbar{display:none}
 .widget{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px;max-width:600px}
 .box{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px}
 .box h3{font-size:12px;font-weight:600;margin-bottom:8px}
