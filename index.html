@@ -11,7 +11,6 @@
 :root {
   --bg-primary: #08080d;
   --bg-card: #101018;
-  --bg-card-hover: #161622;
   --bg-elevated: #1a1a28;
   --border: #1c1c2e;
   --border-glow: #2a2a45;
@@ -24,175 +23,105 @@
   --red-dim: #ff3d7133;
   --blue: #3366ff;
   --orange: #f0a030;
-  --purple: #9966ff;
-  --cyan: #00cfff;
 }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background: var(--bg-primary); color: var(--text-primary); font-family: 'Noto Sans KR', sans-serif; line-height: 1.6; }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* Header */
+.header { padding: 24px 28px 16px; border-bottom: 1px solid var(--border); background: linear-gradient(180deg, #0c0c14 0%, var(--bg-primary) 100%); }
+.header-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.header h1 { font-size: 20px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+.header-meta { display: flex; align-items: center; gap: 16px; font-size: 11px; color: var(--text-muted); }
+.header-meta .dot { width:6px;height:6px;background:var(--green);border-radius:50%;display:inline-block;margin-right:4px;animation:pulse 2s infinite; }
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.status-bar { display:flex;gap:16px;margin-top:8px;font-size:11px;color:var(--text-muted);flex-wrap:wrap; }
+.status-item { display:flex;align-items:center;gap:4px; }
+.ok { color: var(--green); }
+.loading-s { color: var(--orange); }
+.fail { color: var(--red); }
+.period-selector { display:flex;gap:4px;margin-top:12px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none; }
+.period-selector::-webkit-scrollbar{display:none}
+.period-btn { padding:6px 16px;border:1px solid var(--border);border-radius:6px;background:transparent;color:var(--text-secondary);font-size:12px;font-family:'JetBrains Mono',monospace;cursor:pointer;transition:all 0.2s;white-space:nowrap;flex-shrink:0; }
+.period-btn:hover { border-color:var(--border-glow);color:var(--text-primary); }
+.period-btn.active { background:var(--blue);color:#fff;border-color:var(--blue);font-weight:600; }
 
-body {
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  font-family: 'Noto Sans KR', sans-serif;
-  line-height: 1.6;
+/* Layout */
+.dashboard { max-width:1400px;margin:0 auto;padding:20px;display:flex;flex-direction:column;gap:16px; }
+
+/* Signal */
+.signal-banner { display:grid;grid-template-columns:1fr 1fr;gap:12px; }
+.signal-box { background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:16px 18px; }
+.signal-box h3 { font-size:12px;font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:6px; }
+.signal-box.long-box h3 { color:var(--green); }
+.signal-box.short-box h3 { color:var(--red); }
+.signal-item { display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px;cursor:pointer; }
+.signal-item:last-child { border-bottom:none; }
+.signal-item:hover { background:var(--bg-elevated); }
+.signal-item .coin-info { display:flex;align-items:center;gap:8px; }
+.signal-item .coin-info img { width:20px;height:20px;border-radius:50%; }
+.signal-item .coin-symbol { font-family:'JetBrains Mono',monospace;font-weight:600;font-size:13px; }
+.ratio-bar .bar-wrap { width:80px;height:6px;background:var(--bg-primary);border-radius:3px;overflow:hidden; }
+.ratio-bar .bar-fill { height:100%;border-radius:3px;transition:width 0.5s; }
+.signal-item .ratio-bar { display:flex;align-items:center;gap:6px; }
+.ratio-bar .pct { font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;min-width:42px;text-align:right; }
+
+/* Table */
+.section { background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:18px; }
+.section-title { font-size:14px;font-weight:600;margin-bottom:4px;display:flex;align-items:center;gap:8px; }
+.section-subtitle { font-size:11px;color:var(--text-muted);margin-bottom:14px; }
+.table-wrap { overflow-x:auto;-webkit-overflow-scrolling:touch; }
+.table-wrap::-webkit-scrollbar{height:4px}
+.table-wrap::-webkit-scrollbar-thumb{background:var(--border-glow);border-radius:2px}
+.coin-table { width:100%;border-collapse:collapse;font-size:13px;min-width:760px; }
+.coin-table th { padding:8px 10px;font-size:10px;font-weight:500;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid var(--border);text-align:right;white-space:nowrap;cursor:pointer;user-select:none; }
+.coin-table th:first-child,.coin-table th:nth-child(2){text-align:left}
+.coin-table th:hover{color:var(--text-secondary)}
+.coin-table th.sorted{color:var(--blue)}
+.coin-table td { padding:10px;border-bottom:1px solid var(--border);text-align:right;font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;color:var(--text-primary); }
+.coin-table td:first-child{text-align:center;color:var(--text-muted);font-size:11px;width:30px}
+.coin-table td:nth-child(2){text-align:left;font-family:'Noto Sans KR',sans-serif}
+.coin-table tr:hover td{background:var(--bg-elevated)}
+.coin-table tr{cursor:pointer}
+.coin-cell { display:flex;align-items:center;gap:8px; }
+.coin-cell img { width:22px;height:22px;border-radius:50%; }
+.coin-cell .symbol { font-family:'JetBrains Mono',monospace;font-weight:600;font-size:13px;color:var(--text-primary); }
+.coin-cell .name { color:var(--text-secondary);font-size:11px;margin-left:4px; }
+.pos{color:var(--green)}.neg{color:var(--red)}
+.long-pct{color:var(--green);font-weight:500}
+.signal-badge { display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600;font-family:'Noto Sans KR',sans-serif; }
+.signal-badge.extreme_long{background:var(--green-dim);color:var(--green)}
+.signal-badge.long{background:#00d68f18;color:#33e0a8}
+.signal-badge.extreme_short{background:var(--red-dim);color:var(--red)}
+.signal-badge.short{background:#ff3d7118;color:#ff6b8a}
+.signal-badge.neutral{background:transparent;color:var(--text-muted)}
+.ls-bar{display:flex;align-items:center;gap:4px}
+.ls-bar .bar-track{width:60px;height:5px;background:var(--red-dim);border-radius:3px;overflow:hidden}
+.ls-bar .bar-long{height:100%;background:var(--green);border-radius:3px 0 0 3px;transition:width 0.4s}
+.lc{color:var(--text-muted);font-size:11px;font-style:italic}
+
+/* Chart */
+.chart-container{position:relative;width:100%;height:320px}
+.detail-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.detail-coin{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:700}
+.detail-coin img{width:28px;height:28px;border-radius:50%}
+.detail-stats{display:flex;gap:20px;font-size:12px}
+.detail-stats .stat{display:flex;flex-direction:column;align-items:center}
+.detail-stats .stat-label{font-size:10px;color:var(--text-muted);text-transform:uppercase}
+.detail-stats .stat-value{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px}
+
+.footer{text-align:center;padding:20px;font-size:10px;color:var(--text-muted);border-top:1px solid var(--border)}
+.loading{display:flex;align-items:center;justify-content:center;height:200px;color:var(--text-muted);font-size:14px}
+.spinner{width:18px;height:18px;border:2px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:spin 0.8s linear infinite;margin-right:10px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+@media(max-width:900px){
+  .header{padding:16px 14px 12px}.dashboard{padding:12px;gap:12px}.section{padding:14px}
+  .chart-container{height:260px}.signal-banner{grid-template-columns:1fr}
 }
-
-.mono { font-family: 'JetBrains Mono', monospace; }
-
-/* ─── Header ─── */
-.header {
-  padding: 24px 28px 16px;
-  border-bottom: 1px solid var(--border);
-  background: linear-gradient(180deg, #0c0c14 0%, var(--bg-primary) 100%);
-}
-.header-top {
-  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
-}
-.header h1 {
-  font-size: 20px; font-weight: 700; letter-spacing: -0.5px;
-  display: flex; align-items: center; gap: 10px;
-}
-.header h1 .icon { font-size: 22px; }
-.header-meta {
-  display: flex; align-items: center; gap: 16px; font-size: 11px; color: var(--text-muted);
-}
-.header-meta .dot {
-  width: 6px; height: 6px; background: var(--green); border-radius: 50%;
-  display: inline-block; margin-right: 4px; animation: pulse 2s infinite;
-}
-@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-
-.status-bar {
-  display: flex; gap: 16px; margin-top: 8px; font-size: 11px; color: var(--text-muted); flex-wrap: wrap;
-}
-.status-item { display: flex; align-items: center; gap: 4px; }
-.status-item .ok { color: var(--green); }
-.status-item .loading-s { color: var(--orange); }
-.status-item .fail { color: var(--red); }
-
-.period-selector {
-  display: flex; gap: 4px; margin-top: 12px;
-  overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
-}
-.period-selector::-webkit-scrollbar { display: none; }
-.period-btn {
-  padding: 6px 16px; border: 1px solid var(--border); border-radius: 6px;
-  background: transparent; color: var(--text-secondary); font-size: 12px;
-  font-family: 'JetBrains Mono', monospace; cursor: pointer; transition: all 0.2s;
-  white-space: nowrap; flex-shrink: 0; -webkit-tap-highlight-color: transparent;
-}
-.period-btn:hover { border-color: var(--border-glow); color: var(--text-primary); }
-.period-btn.active { background: var(--blue); color: #fff; border-color: var(--blue); font-weight: 600; }
-
-/* ─── Dashboard ─── */
-.dashboard { max-width: 1400px; margin: 0 auto; padding: 20px; display: flex; flex-direction: column; gap: 16px; }
-
-/* ─── Signal Banner ─── */
-.signal-banner { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.signal-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; }
-.signal-box h3 { font-size: 12px; font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
-.signal-box.long-box h3 { color: var(--green); }
-.signal-box.short-box h3 { color: var(--red); }
-
-.signal-item {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 13px; cursor: pointer;
-}
-.signal-item:last-child { border-bottom: none; }
-.signal-item:hover { background: var(--bg-elevated); }
-.signal-item .coin-info { display: flex; align-items: center; gap: 8px; }
-.signal-item .coin-info img { width: 20px; height: 20px; border-radius: 50%; }
-.signal-item .coin-symbol { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 13px; }
-.signal-item .ratio-bar { display: flex; align-items: center; gap: 6px; }
-.ratio-bar .bar-wrap { width: 80px; height: 6px; background: var(--bg-primary); border-radius: 3px; overflow: hidden; }
-.ratio-bar .bar-fill { height: 100%; border-radius: 3px; transition: width 0.5s; }
-.ratio-bar .pct { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; min-width: 42px; text-align: right; }
-
-/* ─── Coin Table ─── */
-.section { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
-.section-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
-.section-subtitle { font-size: 11px; color: var(--text-muted); margin-bottom: 14px; }
-
-.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-.table-wrap::-webkit-scrollbar { height: 4px; }
-.table-wrap::-webkit-scrollbar-thumb { background: var(--border-glow); border-radius: 2px; }
-
-.coin-table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 760px; }
-.coin-table th {
-  padding: 8px 10px; font-size: 10px; font-weight: 500; color: var(--text-muted);
-  text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border);
-  text-align: right; white-space: nowrap; cursor: pointer; user-select: none;
-}
-.coin-table th:first-child, .coin-table th:nth-child(2) { text-align: left; }
-.coin-table th:hover { color: var(--text-secondary); }
-.coin-table th.sorted { color: var(--blue); }
-
-.coin-table td {
-  padding: 10px 10px; border-bottom: 1px solid var(--border); text-align: right;
-  font-family: 'JetBrains Mono', monospace; font-size: 13px; white-space: nowrap;
-  color: var(--text-primary);
-}
-.coin-table td:first-child { text-align: center; color: var(--text-muted); font-size: 11px; width: 30px; }
-.coin-table td:nth-child(2) { text-align: left; font-family: 'Noto Sans KR', sans-serif; }
-.coin-table tr:hover td { background: var(--bg-elevated); }
-.coin-table tr { cursor: pointer; }
-
-.coin-cell { display: flex; align-items: center; gap: 8px; }
-.coin-cell img { width: 22px; height: 22px; border-radius: 50%; }
-.coin-cell .symbol { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 13px; color: var(--text-primary); }
-.coin-cell .name { color: var(--text-secondary); font-size: 11px; margin-left: 4px; }
-
-.pos { color: var(--green); }
-.neg { color: var(--red); }
-.long-pct { color: var(--green); font-weight: 500; }
-.short-pct { color: var(--red); font-weight: 500; }
-
-.signal-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 600; font-family: 'Noto Sans KR', sans-serif; }
-.signal-badge.extreme_long { background: var(--green-dim); color: var(--green); }
-.signal-badge.long { background: #00d68f18; color: #33e0a8; }
-.signal-badge.extreme_short { background: var(--red-dim); color: var(--red); }
-.signal-badge.short { background: #ff3d7118; color: #ff6b8a; }
-.signal-badge.neutral { background: transparent; color: var(--text-muted); }
-
-.ls-bar { display: flex; align-items: center; gap: 4px; }
-.ls-bar .bar-track { width: 60px; height: 5px; background: var(--red-dim); border-radius: 3px; overflow: hidden; position: relative; }
-.ls-bar .bar-long { height: 100%; background: var(--green); border-radius: 3px 0 0 3px; transition: width 0.4s; }
-
-.loading-cell { color: var(--text-muted); font-size: 11px; font-style: italic; }
-
-/* ─── Detail Chart ─── */
-.chart-container { position: relative; width: 100%; height: 320px; }
-.detail-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
-.detail-coin { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 700; }
-.detail-coin img { width: 28px; height: 28px; border-radius: 50%; }
-.detail-stats { display: flex; gap: 20px; font-size: 12px; }
-.detail-stats .stat { display: flex; flex-direction: column; align-items: center; }
-.detail-stats .stat-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; }
-.detail-stats .stat-value { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 14px; }
-
-/* ─── Footer ─── */
-.footer { text-align: center; padding: 20px; font-size: 10px; color: var(--text-muted); border-top: 1px solid var(--border); }
-
-/* ─── Loading ─── */
-.loading { display: flex; align-items: center; justify-content: center; height: 200px; color: var(--text-muted); font-size: 14px; }
-.spinner { width: 18px; height: 18px; border: 2px solid var(--border); border-top-color: var(--blue); border-radius: 50%; animation: spin 0.8s linear infinite; margin-right: 10px; }
-@keyframes spin { to { transform: rotate(360deg); } }
-
-/* ─── Responsive ─── */
-@media (max-width: 900px) {
-  .header { padding: 16px 14px 12px; }
-  .dashboard { padding: 12px; gap: 12px; }
-  .section { padding: 14px; }
-  .chart-container { height: 260px; }
-  .signal-banner { grid-template-columns: 1fr; }
-}
-@media (max-width: 500px) {
-  .header h1 { font-size: 17px; }
-  .coin-table { font-size: 12px; }
-  .period-btn { padding: 8px 14px; font-size: 13px; }
-  .chart-container { height: 230px; }
-  .detail-coin { font-size: 16px; }
-  .detail-stats .stat-value { font-size: 12px; }
+@media(max-width:500px){
+  .header h1{font-size:17px}.coin-table{font-size:12px}
+  .period-btn{padding:8px 14px;font-size:13px}.chart-container{height:230px}
+  .detail-coin{font-size:16px}.detail-stats .stat-value{font-size:12px}
 }
 </style>
 </head>
@@ -200,15 +129,16 @@ body {
 
 <div class="header">
   <div class="header-top">
-    <h1><span class="icon">📊</span> 롱숏 비율 대시보드</h1>
+    <h1><span>📊</span> 롱숏 비율 대시보드</h1>
     <div class="header-meta">
-      <span><span class="dot"></span> 자동 업데이트</span>
+      <span><span class="dot"></span> 실시간</span>
       <span id="lastUpdated">-</span>
     </div>
   </div>
   <div class="status-bar">
-    <div class="status-item">Bybit: <span id="statusBybit" class="loading-s">로딩 중</span></div>
+    <div class="status-item">코인목록: <span id="statusCoins" class="loading-s">로딩 중</span></div>
     <div class="status-item">Binance: <span id="statusBinance" class="loading-s">로딩 중</span></div>
+    <div class="status-item">Bybit: <span id="statusBybit" class="loading-s">로딩 중</span></div>
   </div>
   <div class="period-selector">
     <button class="period-btn active" data-period="1">1일</button>
@@ -223,29 +153,29 @@ body {
   </div>
   <div class="section">
     <div class="section-title">📋 전체 코인 롱숏 비율</div>
-    <div class="section-subtitle">Bybit (서버) · Binance (실시간) · 코인을 클릭하면 상세 차트</div>
+    <div class="section-subtitle">Binance · Bybit 실시간 롱/숏 비율 · 코인을 클릭하면 상세 차트</div>
     <div class="table-wrap" id="coinTableWrap">
       <div class="loading"><div class="spinner"></div>데이터 로딩 중...</div>
     </div>
   </div>
   <div class="section" id="detailSection" style="display:none;">
     <div class="detail-header" id="detailHeader"></div>
-    <div class="chart-container">
+    <div class="chart-container" id="chartContainer">
       <canvas id="detailChart"></canvas>
     </div>
   </div>
 </div>
 
 <div class="footer">
-  데이터 출처: Bybit (서버) · Binance (클라이언트) · CoinGecko · 투자 조언이 아닙니다
+  데이터: Binance · Bybit (브라우저 실시간) · CoinGecko (코인 목록) · 투자 조언이 아닙니다
 </div>
 
 <script>
-// ─── Globals ────────────────────────────────────────────────────────────
 const isMobile = window.innerWidth <= 600;
-let allData = null;
-let binanceData = {};  // { symbol: { long, short, ratio } }
-let binanceLoaded = false;
+let allCoins = [];
+let binanceData = {};   // symbol -> { long, short, ratio }
+let bybitData = {};     // symbol -> { long, short, ratio }
+let binanceDone = false, bybitDone = false;
 let selectedCoin = null;
 let detailChart = null;
 let currentSort = { col: 'market_cap_rank', dir: 'asc' };
@@ -253,370 +183,364 @@ let currentSort = { col: 'market_cap_rank', dir: 'asc' };
 if (typeof Chart !== 'undefined') {
   Chart.defaults.color = '#8888a8';
   Chart.defaults.borderColor = '#1c1c2e';
-  Chart.defaults.font.family = "'JetBrains Mono', 'Noto Sans KR', monospace";
+  Chart.defaults.font.family = "'JetBrains Mono','Noto Sans KR',monospace";
   Chart.defaults.font.size = isMobile ? 10 : 11;
 }
 
-// ─── Helpers ────────────────────────────────────────────────────────────
-const fmt = (v, d=1) => v != null ? (v > 0 ? '+' : '') + v.toFixed(d) : '-';
-const pct = (v) => v != null ? (v * 100).toFixed(1) + '%' : '-';
+// ─── Helpers ────────────────────────────────────────────────────────
 const fmtPrice = (p) => {
   if (!p) return '-';
-  if (p >= 1000) return '$' + p.toLocaleString('en-US', { maximumFractionDigits: 0 });
+  if (p >= 1000) return '$' + p.toLocaleString('en-US',{maximumFractionDigits:0});
   if (p >= 1) return '$' + p.toFixed(2);
   if (p >= 0.01) return '$' + p.toFixed(4);
   return '$' + p.toFixed(6);
 };
+const fmt = (v,d=1) => v!=null?(v>0?'+':'')+v.toFixed(d):'-';
+const round = Math.round;
 
-// ─── Binance Client-Side Fetch ──────────────────────────────────────────
-async function fetchBinanceLongShort(symbol) {
-  const pair = symbol + 'USDT';
-  const url = `https://fapi.binance.com/futures/data/globalLongShortAccountRatio?symbol=${pair}&period=1h&limit=1`;
-  try {
-    const resp = await fetch(url);
-    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-    const data = await resp.json();
-    if (data && data.length > 0) {
-      return {
-        long: parseFloat(data[0].longAccount),
-        short: parseFloat(data[0].shortAccount),
-        ratio: parseFloat(data[0].longShortRatio),
-      };
-    }
-  } catch (e) {
-    // Silently fail per coin
-  }
+function getBestLong(symbol) {
+  const bn = binanceData[symbol];
+  const by = bybitData[symbol];
+  if (bn && by) return { long: bn.long, short: bn.short, src: 'both' };
+  if (bn) return { long: bn.long, short: bn.short, src: 'binance' };
+  if (by) return { long: by.long, short: by.short, src: 'bybit' };
   return null;
 }
 
-async function fetchAllBinanceData(coins) {
-  document.getElementById('statusBinance').textContent = '로딩 중...';
-  document.getElementById('statusBinance').className = 'loading-s';
-
-  let success = 0, fail = 0;
-  // Batch in groups of 5 to avoid rate limits
-  for (let i = 0; i < coins.length; i += 5) {
-    const batch = coins.slice(i, i + 5);
-    const results = await Promise.all(batch.map(c => fetchBinanceLongShort(c.symbol)));
-    results.forEach((r, j) => {
-      if (r) {
-        binanceData[batch[j].symbol] = r;
-        success++;
-      } else {
-        fail++;
-      }
-    });
-    // Update table progressively
-    renderCoinTable(allData.coins);
-    renderSignalBanner(allData.coins);
-    // Small delay between batches
-    if (i + 5 < coins.length) await new Promise(r => setTimeout(r, 300));
-  }
-
-  binanceLoaded = true;
-
-  if (success > 0) {
-    document.getElementById('statusBinance').textContent = `✓ ${success}개 코인`;
-    document.getElementById('statusBinance').className = 'ok';
-  } else {
-    document.getElementById('statusBinance').textContent = '✗ 차단됨';
-    document.getElementById('statusBinance').className = 'fail';
-  }
-
-  // Final re-render
-  renderCoinTable(allData.coins);
-  renderSignalBanner(allData.coins);
-  if (selectedCoin) selectCoin(selectedCoin);
+function getSignal(longPct) {
+  if (longPct >= 0.70) return { signal: 'extreme_long', text: '🟢 극단 롱' };
+  if (longPct >= 0.60) return { signal: 'long', text: '롱 과밀' };
+  if (longPct <= 0.30) return { signal: 'extreme_short', text: '🔴 극단 숏' };
+  if (longPct <= 0.40) return { signal: 'short', text: '숏 과밀' };
+  return { signal: 'neutral', text: '-' };
 }
 
-// ─── Data Loading ───────────────────────────────────────────────────────
-async function loadData() {
+// ─── Binance Client Fetch ───────────────────────────────────────────
+async function fetchBinance(symbol) {
+  try {
+    const r = await fetch(`https://fapi.binance.com/futures/data/globalLongShortAccountRatio?symbol=${symbol}USDT&period=1h&limit=1`);
+    if (!r.ok) return null;
+    const d = await r.json();
+    if (d && d.length > 0) return { long: +d[0].longAccount, short: +d[0].shortAccount, ratio: +d[0].longShortRatio };
+  } catch(e) {}
+  return null;
+}
+
+async function fetchBinanceHistory(symbol, period='4h', limit=180) {
+  try {
+    const r = await fetch(`https://fapi.binance.com/futures/data/globalLongShortAccountRatio?symbol=${symbol}USDT&period=${period}&limit=${limit}`);
+    if (!r.ok) return [];
+    const d = await r.json();
+    return d.map(x => ({
+      timestamp: new Date(x.timestamp).toISOString(),
+      long: +x.longAccount, short: +x.shortAccount
+    }));
+  } catch(e) { return []; }
+}
+
+async function fetchAllBinance(coins) {
+  const el = document.getElementById('statusBinance');
+  el.textContent = '0/' + coins.length; el.className = 'loading-s';
+  let ok = 0;
+  for (let i = 0; i < coins.length; i += 5) {
+    const batch = coins.slice(i, i+5);
+    const results = await Promise.all(batch.map(c => fetchBinance(c.symbol)));
+    results.forEach((r,j) => { if(r){ binanceData[batch[j].symbol]=r; ok++; }});
+    el.textContent = `${Math.min(i+5,coins.length)}/${coins.length}`;
+    rerender();
+    if (i+5 < coins.length) await new Promise(r=>setTimeout(r,250));
+  }
+  binanceDone = true;
+  el.textContent = ok > 0 ? `✓ ${ok}개` : '✗ 차단';
+  el.className = ok > 0 ? 'ok' : 'fail';
+  rerender();
+}
+
+// ─── Bybit Client Fetch ────────────────────────────────────────────
+async function fetchBybit(symbol) {
+  try {
+    const r = await fetch(`https://api.bybit.com/v5/market/account-ratio?category=linear&symbol=${symbol}USDT&period=1h&limit=1`);
+    if (!r.ok) return null;
+    const d = await r.json();
+    if (d.retCode === 0) {
+      const lst = d.result?.list;
+      if (lst && lst.length > 0) {
+        const buy = +lst[0].buyRatio, sell = +lst[0].sellRatio;
+        return { long: buy, short: sell, ratio: +(buy/Math.max(sell,0.001)).toFixed(4) };
+      }
+    }
+  } catch(e) {}
+  return null;
+}
+
+async function fetchBybitHistory(symbol, period='4h', limit=200) {
+  try {
+    const r = await fetch(`https://api.bybit.com/v5/market/account-ratio?category=linear&symbol=${symbol}USDT&period=${period}&limit=${limit}`);
+    if (!r.ok) return [];
+    const d = await r.json();
+    if (d.retCode === 0) {
+      const lst = d.result?.list || [];
+      return lst.map(x => ({
+        timestamp: new Date(+x.timestamp).toISOString(),
+        long: +x.buyRatio, short: +x.sellRatio
+      })).reverse();
+    }
+  } catch(e) {}
+  return [];
+}
+
+async function fetchAllBybit(coins) {
+  const el = document.getElementById('statusBybit');
+  el.textContent = '0/' + coins.length; el.className = 'loading-s';
+  let ok = 0;
+  for (let i = 0; i < coins.length; i += 5) {
+    const batch = coins.slice(i, i+5);
+    const results = await Promise.all(batch.map(c => fetchBybit(c.symbol)));
+    results.forEach((r,j) => { if(r){ bybitData[batch[j].symbol]=r; ok++; }});
+    el.textContent = `${Math.min(i+5,coins.length)}/${coins.length}`;
+    rerender();
+    if (i+5 < coins.length) await new Promise(r=>setTimeout(r,200));
+  }
+  bybitDone = true;
+  el.textContent = ok > 0 ? `✓ ${ok}개` : '✗ 차단';
+  el.className = ok > 0 ? 'ok' : 'fail';
+  rerender();
+}
+
+// ─── Load & Init ────────────────────────────────────────────────────
+async function init() {
   try {
     const resp = await fetch('data/coins.json');
-    allData = await resp.json();
-    console.log(`[LS] Loaded: ${allData.coins.length} coins`);
-
-    document.getElementById('statusBybit').textContent = `✓ ${allData.coins.length}개 코인`;
-    document.getElementById('statusBybit').className = 'ok';
-
+    const data = await resp.json();
+    allCoins = data.coins;
+    document.getElementById('statusCoins').textContent = `✓ ${allCoins.length}개`;
+    document.getElementById('statusCoins').className = 'ok';
     document.getElementById('lastUpdated').textContent =
-      '서버: ' + new Date(allData.updated_at).toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
+      '코인목록: ' + new Date(data.updated_at).toLocaleString('ko-KR',{timeZone:'Asia/Seoul'});
+    rerender();
 
-    renderAll();
-
-    // Fetch Binance data client-side
-    fetchAllBinanceData(allData.coins);
-  } catch (e) {
-    console.error('[LS] Failed:', e);
+    // Fetch exchange data in parallel
+    fetchAllBinance(allCoins);
+    fetchAllBybit(allCoins);
+  } catch(e) {
     document.getElementById('signalBanner').innerHTML =
-      '<div class="loading" style="color:#ff3d71">데이터 로딩 실패 — data/coins.json을 확인하세요</div>';
-    document.getElementById('statusBybit').textContent = '✗ 실패';
-    document.getElementById('statusBybit').className = 'fail';
+      '<div class="loading" style="color:var(--red)">coins.json 로딩 실패</div>';
+    document.getElementById('statusCoins').textContent = '✗ 실패';
+    document.getElementById('statusCoins').className = 'fail';
   }
 }
 
-// ─── Render ─────────────────────────────────────────────────────────────
-function renderAll() {
-  if (!allData) return;
-  renderSignalBanner(allData.coins);
-  renderCoinTable(allData.coins);
+function rerender() {
+  renderSignalBanner();
+  renderCoinTable();
 }
 
-// ─── Get best long ratio for a coin (prefer Binance, fallback Bybit) ───
-function getBestLong(coin) {
-  const bn = binanceData[coin.symbol];
-  if (bn) return { long: bn.long, short: bn.short, source: 'binance' };
-  const by = coin.bybit;
-  if (by) return { long: by.long, short: by.short, source: 'bybit' };
-  return null;
-}
-
-// ─── Signal Banner ──────────────────────────────────────────────────────
-function renderSignalBanner(coins) {
-  const withRatio = coins.filter(c => getBestLong(c));
-  const sorted = [...withRatio].sort((a, b) => {
-    const aL = getBestLong(a); const bL = getBestLong(b);
-    return (bL?.long || 0.5) - (aL?.long || 0.5);
-  });
-
+// ─── Signal Banner ──────────────────────────────────────────────────
+function renderSignalBanner() {
+  const withData = allCoins.filter(c => getBestLong(c.symbol));
+  if (withData.length === 0) {
+    document.getElementById('signalBanner').innerHTML =
+      '<div class="loading"><div class="spinner"></div>거래소 데이터 로딩 중...</div>';
+    return;
+  }
+  const sorted = [...withData].sort((a,b) => (getBestLong(b.symbol)?.long||0.5) - (getBestLong(a.symbol)?.long||0.5));
   const topLong = sorted.slice(0, 5);
   const topShort = sorted.slice(-5).reverse();
 
   document.getElementById('signalBanner').innerHTML = `
     <div class="signal-box long-box">
       <h3>🟢 롱 과밀 TOP 5</h3>
-      ${topLong.map(c => renderSignalItem(c, 'long')).join('')}
+      ${topLong.map(c => sigItem(c,'long')).join('')}
     </div>
     <div class="signal-box short-box">
       <h3>🔴 숏 과밀 TOP 5</h3>
-      ${topShort.map(c => renderSignalItem(c, 'short')).join('')}
-    </div>
-  `;
+      ${topShort.map(c => sigItem(c,'short')).join('')}
+    </div>`;
 }
 
-function renderSignalItem(coin, type) {
-  const best = getBestLong(coin);
+function sigItem(coin, type) {
+  const best = getBestLong(coin.symbol);
   if (!best) return '';
-  const displayPct = type === 'long' ? best.long : best.short;
-  const barColor = type === 'long' ? 'var(--green)' : 'var(--red)';
-  const pctColor = type === 'long' ? 'var(--green)' : 'var(--red)';
-
-  return `
-    <div class="signal-item" onclick="selectCoin('${coin.symbol}')">
-      <div class="coin-info">
-        <img src="${coin.image}" alt="${coin.symbol}" onerror="this.style.display='none'">
-        <span class="coin-symbol">${coin.symbol}</span>
-      </div>
-      <div class="ratio-bar">
-        <div class="bar-wrap">
-          <div class="bar-fill" style="width: ${displayPct * 100}%; background: ${barColor}"></div>
-        </div>
-        <span class="pct" style="color: ${pctColor}">${(displayPct * 100).toFixed(1)}%</span>
-      </div>
+  const pctVal = type==='long' ? best.long : best.short;
+  const color = type==='long' ? 'var(--green)' : 'var(--red)';
+  return `<div class="signal-item" onclick="selectCoin('${coin.symbol}')">
+    <div class="coin-info">
+      <img src="${coin.image}" onerror="this.style.display='none'">
+      <span class="coin-symbol">${coin.symbol}</span>
     </div>
-  `;
+    <div class="ratio-bar">
+      <div class="bar-wrap"><div class="bar-fill" style="width:${pctVal*100}%;background:${color}"></div></div>
+      <span class="pct" style="color:${color}">${(pctVal*100).toFixed(1)}%</span>
+    </div>
+  </div>`;
 }
 
-// ─── Coin Table ─────────────────────────────────────────────────────────
-function renderCoinTable(coins) {
-  const sorted = sortCoins([...coins], currentSort.col, currentSort.dir);
-  const si = (col) => currentSort.col === col ? (currentSort.dir === 'asc' ? ' ↑' : ' ↓') : '';
-  const sc = (col) => currentSort.col === col ? 'sorted' : '';
+// ─── Coin Table ─────────────────────────────────────────────────────
+function renderCoinTable() {
+  const coins = sortCoins([...allCoins], currentSort.col, currentSort.dir);
+  const si=(c)=>currentSort.col===c?(currentSort.dir==='asc'?' ↑':' ↓'):'';
+  const sc=(c)=>currentSort.col===c?'sorted':'';
 
-  let html = `<table class="coin-table">
-    <thead><tr>
-      <th onclick="doSort('market_cap_rank')" class="${sc('market_cap_rank')}">#${si('market_cap_rank')}</th>
-      <th onclick="doSort('symbol')" class="${sc('symbol')}">코인${si('symbol')}</th>
-      <th onclick="doSort('price')" class="${sc('price')}">가격${si('price')}</th>
-      <th onclick="doSort('price_change_24h')" class="${sc('price_change_24h')}">24h${si('price_change_24h')}</th>
-      <th onclick="doSort('binance_long')" class="${sc('binance_long')}">Binance 롱${si('binance_long')}</th>
-      <th onclick="doSort('bybit_long')" class="${sc('bybit_long')}">Bybit 롱${si('bybit_long')}</th>
-      <th>롱/숏</th>
-      <th onclick="doSort('signal_strength')" class="${sc('signal_strength')}">시그널${si('signal_strength')}</th>
-    </tr></thead><tbody>`;
+  let h = `<table class="coin-table"><thead><tr>
+    <th onclick="doSort('market_cap_rank')" class="${sc('market_cap_rank')}">#${si('market_cap_rank')}</th>
+    <th onclick="doSort('symbol')" class="${sc('symbol')}">코인${si('symbol')}</th>
+    <th onclick="doSort('price')" class="${sc('price')}">가격${si('price')}</th>
+    <th onclick="doSort('price_change_24h')" class="${sc('price_change_24h')}">24h${si('price_change_24h')}</th>
+    <th onclick="doSort('binance_long')" class="${sc('binance_long')}">Binance${si('binance_long')}</th>
+    <th onclick="doSort('bybit_long')" class="${sc('bybit_long')}">Bybit${si('bybit_long')}</th>
+    <th>롱/숏</th>
+    <th onclick="doSort('signal')" class="${sc('signal')}">시그널${si('signal')}</th>
+  </tr></thead><tbody>`;
 
-  sorted.forEach((c, i) => {
+  coins.forEach((c,i) => {
     const bn = binanceData[c.symbol];
-    const by = c.bybit;
-    const priceCls = (c.price_change_24h || 0) >= 0 ? 'pos' : 'neg';
-
-    // Signal from best available
-    const best = getBestLong(c);
-    const longPct = best?.long || 0.5;
-    let signal = 'neutral', signalStrength = 0;
-    if (longPct >= 0.70) { signal = 'extreme_long'; signalStrength = round((longPct - 0.5) * 200); }
-    else if (longPct >= 0.60) { signal = 'long'; signalStrength = round((longPct - 0.5) * 200); }
-    else if (longPct <= 0.30) { signal = 'extreme_short'; signalStrength = round((0.5 - longPct) * 200); }
-    else if (longPct <= 0.40) { signal = 'short'; signalStrength = round((0.5 - longPct) * 200); }
-
-    const signalText = {
-      extreme_long: '🟢 극단 롱', long: '롱 과밀',
-      extreme_short: '🔴 극단 숏', short: '숏 과밀', neutral: '-'
-    }[signal];
-
-    // Bar uses best available
+    const by = bybitData[c.symbol];
+    const best = getBestLong(c.symbol);
     const barLong = best?.long || 0.5;
+    const sig = getSignal(best?.long || 0.5);
+    const pc = (c.price_change_24h||0)>=0?'pos':'neg';
 
-    html += `<tr onclick="selectCoin('${c.symbol}')">
-      <td>${c.market_cap_rank || i + 1}</td>
-      <td>
-        <div class="coin-cell">
-          <img src="${c.image}" alt="${c.symbol}" onerror="this.style.display='none'">
-          <span class="symbol">${c.symbol}</span>
-          <span class="name">${c.name || ''}</span>
-        </div>
-      </td>
+    h += `<tr onclick="selectCoin('${c.symbol}')">
+      <td>${c.market_cap_rank||i+1}</td>
+      <td><div class="coin-cell">
+        <img src="${c.image}" onerror="this.style.display='none'">
+        <span class="symbol">${c.symbol}</span>
+        <span class="name">${c.name||''}</span>
+      </div></td>
       <td>${fmtPrice(c.price)}</td>
-      <td class="${priceCls}">${fmt(c.price_change_24h, 1)}%</td>
-      <td>${bn ? `<span class="long-pct">${(bn.long * 100).toFixed(1)}%</span>` :
-            (!binanceLoaded ? '<span class="loading-cell">···</span>' : '<span class="loading-cell">-</span>')}</td>
-      <td>${by ? `<span class="long-pct">${(by.long * 100).toFixed(1)}%</span>` : '-'}</td>
-      <td>
-        <div class="ls-bar">
-          <div class="bar-track">
-            <div class="bar-long" style="width: ${barLong * 100}%"></div>
-          </div>
-        </div>
-      </td>
-      <td><span class="signal-badge ${signal}">${signalText}</span></td>
+      <td class="${pc}">${fmt(c.price_change_24h,1)}%</td>
+      <td>${bn?`<span class="long-pct">${(bn.long*100).toFixed(1)}%</span>`:(!binanceDone?'<span class="lc">···</span>':'<span class="lc">-</span>')}</td>
+      <td>${by?`<span class="long-pct">${(by.long*100).toFixed(1)}%</span>`:(!bybitDone?'<span class="lc">···</span>':'<span class="lc">-</span>')}</td>
+      <td><div class="ls-bar"><div class="bar-track"><div class="bar-long" style="width:${barLong*100}%"></div></div></div></td>
+      <td><span class="signal-badge ${best?sig.signal:'neutral'}">${best?sig.text:'-'}</span></td>
     </tr>`;
   });
 
-  html += '</tbody></table>';
-  document.getElementById('coinTableWrap').innerHTML = html;
+  h += '</tbody></table>';
+  document.getElementById('coinTableWrap').innerHTML = h;
 }
 
-function round(v) { return Math.round(v); }
-
-// ─── Sorting ────────────────────────────────────────────────────────────
+// ─── Sort ───────────────────────────────────────────────────────────
 function sortCoins(coins, col, dir) {
-  return coins.sort((a, b) => {
-    let va, vb;
-    switch (col) {
-      case 'market_cap_rank': va = a.market_cap_rank || 999; vb = b.market_cap_rank || 999; break;
-      case 'symbol': va = a.symbol; vb = b.symbol; return dir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va);
-      case 'price': va = a.price || 0; vb = b.price || 0; break;
-      case 'price_change_24h': va = a.price_change_24h || 0; vb = b.price_change_24h || 0; break;
-      case 'binance_long': va = binanceData[a.symbol]?.long || 0.5; vb = binanceData[b.symbol]?.long || 0.5; break;
-      case 'bybit_long': va = a.bybit?.long || 0.5; vb = b.bybit?.long || 0.5; break;
-      case 'signal_strength':
-        va = getBestLong(a)?.long || 0.5; vb = getBestLong(b)?.long || 0.5;
-        va = Math.abs(va - 0.5); vb = Math.abs(vb - 0.5); break;
-      default: va = 0; vb = 0;
+  return coins.sort((a,b) => {
+    let va,vb;
+    switch(col) {
+      case 'market_cap_rank': va=a.market_cap_rank||999;vb=b.market_cap_rank||999;break;
+      case 'symbol': return dir==='asc'?a.symbol.localeCompare(b.symbol):b.symbol.localeCompare(a.symbol);
+      case 'price': va=a.price||0;vb=b.price||0;break;
+      case 'price_change_24h': va=a.price_change_24h||0;vb=b.price_change_24h||0;break;
+      case 'binance_long': va=binanceData[a.symbol]?.long||0.5;vb=binanceData[b.symbol]?.long||0.5;break;
+      case 'bybit_long': va=bybitData[a.symbol]?.long||0.5;vb=bybitData[b.symbol]?.long||0.5;break;
+      case 'signal': va=Math.abs((getBestLong(a.symbol)?.long||0.5)-0.5);vb=Math.abs((getBestLong(b.symbol)?.long||0.5)-0.5);break;
+      default: va=0;vb=0;
     }
-    return dir === 'asc' ? va - vb : vb - va;
+    return dir==='asc'?va-vb:vb-va;
   });
 }
 
 function doSort(col) {
-  if (currentSort.col === col) {
-    currentSort.dir = currentSort.dir === 'asc' ? 'desc' : 'asc';
-  } else {
-    currentSort.col = col;
-    currentSort.dir = col === 'market_cap_rank' ? 'asc' : 'desc';
-  }
-  renderCoinTable(allData.coins);
+  if (currentSort.col===col) currentSort.dir=currentSort.dir==='asc'?'desc':'asc';
+  else { currentSort.col=col; currentSort.dir=col==='market_cap_rank'?'asc':'desc'; }
+  renderCoinTable();
 }
 
-// ─── Detail Chart ───────────────────────────────────────────────────────
-function selectCoin(symbol) {
+// ─── Detail Chart ───────────────────────────────────────────────────
+async function selectCoin(symbol) {
   selectedCoin = symbol;
-  const coin = allData.coins.find(c => c.symbol === symbol);
+  const coin = allCoins.find(c=>c.symbol===symbol);
   if (!coin) return;
 
   const section = document.getElementById('detailSection');
   section.style.display = 'block';
 
   const bn = binanceData[symbol];
-  const by = coin.bybit;
+  const by = bybitData[symbol];
 
   document.getElementById('detailHeader').innerHTML = `
     <div class="detail-coin">
-      <img src="${coin.image}" alt="${symbol}" onerror="this.style.display='none'">
+      <img src="${coin.image}" onerror="this.style.display='none'">
       ${symbol} 롱숏 추이
     </div>
     <div class="detail-stats">
-      <div class="stat">
-        <span class="stat-label">Binance 롱</span>
-        <span class="stat-value long-pct">${bn ? (bn.long * 100).toFixed(1) + '%' : '-'}</span>
-      </div>
-      <div class="stat">
-        <span class="stat-label">Bybit 롱</span>
-        <span class="stat-value long-pct">${by ? (by.long * 100).toFixed(1) + '%' : '-'}</span>
-      </div>
-      <div class="stat">
-        <span class="stat-label">가격</span>
-        <span class="stat-value">${fmtPrice(coin.price)}</span>
-      </div>
-    </div>
-  `;
+      <div class="stat"><span class="stat-label">Binance 롱</span>
+        <span class="stat-value long-pct">${bn?(bn.long*100).toFixed(1)+'%':'-'}</span></div>
+      <div class="stat"><span class="stat-label">Bybit 롱</span>
+        <span class="stat-value long-pct">${by?(by.long*100).toFixed(1)+'%':'-'}</span></div>
+      <div class="stat"><span class="stat-label">가격</span>
+        <span class="stat-value">${fmtPrice(coin.price)}</span></div>
+    </div>`;
 
-  // Chart: use Bybit history from server
-  const history = allData.histories?.[symbol] || [];
-  const chartDiv = section.querySelector('.chart-container');
-  if (history.length === 0) {
-    chartDiv.innerHTML = '<div class="loading">이 코인의 히스토리 데이터가 아직 없습니다</div>';
-    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const chartDiv = document.getElementById('chartContainer');
+  chartDiv.innerHTML = '<div class="loading"><div class="spinner"></div>히스토리 로딩 중...</div>';
+  section.scrollIntoView({behavior:'smooth',block:'start'});
+
+  // Fetch history from both exchanges
+  const periodDays = parseInt(document.querySelector('.period-btn.active').dataset.period);
+  const limit = periodDays <= 1 ? 24 : periodDays <= 7 ? 42 : 180;
+  const period = periodDays <= 1 ? '1h' : '4h';
+
+  const [bnHist, byHist] = await Promise.all([
+    fetchBinanceHistory(symbol, period, limit),
+    fetchBybitHistory(symbol, period, limit)
+  ]);
+
+  // Use whichever has data (prefer Binance for longer history)
+  const hist = bnHist.length > 0 ? bnHist : byHist;
+  const histSource = bnHist.length > 0 ? 'Binance' : 'Bybit';
+
+  if (hist.length === 0) {
+    chartDiv.innerHTML = '<div class="loading">히스토리 데이터가 없습니다</div>';
     return;
   }
 
   chartDiv.innerHTML = '<canvas id="detailChart"></canvas>';
 
-  const periodDays = parseInt(document.querySelector('.period-btn.active').dataset.period);
   const cutoff = new Date();
   cutoff.setDate(cutoff.getDate() - periodDays);
+  const filtered = hist.filter(h => new Date(h.timestamp) >= cutoff);
 
-  const filtered = history.filter(h => new Date(h.timestamp) >= cutoff);
   const labels = filtered.map(h => {
     const d = new Date(h.timestamp);
     return `${d.getMonth()+1}/${d.getDate()} ${String(d.getHours()).padStart(2,'0')}:00`;
   });
 
-  const ctx = document.getElementById('detailChart');
   if (detailChart) detailChart.destroy();
-
-  detailChart = new Chart(ctx, {
+  detailChart = new Chart(document.getElementById('detailChart'), {
     type: 'line',
     data: {
-      labels: labels,
+      labels,
       datasets: [
         {
-          label: 'Bybit 롱 비율',
-          data: filtered.map(h => h.long * 100),
-          borderColor: '#00d68f',
-          backgroundColor: '#00d68f20',
-          fill: true, tension: 0.3, pointRadius: 0, pointHoverRadius: 4, borderWidth: 2,
+          label: `${histSource} 롱`,
+          data: filtered.map(h=>h.long*100),
+          borderColor:'#00d68f', backgroundColor:'#00d68f20',
+          fill:true,tension:0.3,pointRadius:0,pointHoverRadius:4,borderWidth:2,
         },
         {
-          label: 'Bybit 숏 비율',
-          data: filtered.map(h => h.short * 100),
-          borderColor: '#ff3d71',
-          backgroundColor: '#ff3d7120',
-          fill: true, tension: 0.3, pointRadius: 0, pointHoverRadius: 4, borderWidth: 2,
+          label: `${histSource} 숏`,
+          data: filtered.map(h=>h.short*100),
+          borderColor:'#ff3d71', backgroundColor:'#ff3d7120',
+          fill:true,tension:0.3,pointRadius:0,pointHoverRadius:4,borderWidth:2,
         }
       ]
     },
     options: {
-      responsive: true, maintainAspectRatio: false,
-      interaction: { intersect: false, mode: 'index' },
+      responsive:true, maintainAspectRatio:false,
+      interaction:{intersect:false,mode:'index'},
       plugins: {
-        legend: { labels: { boxWidth: isMobile ? 8 : 12, padding: isMobile ? 8 : 14 } },
-        tooltip: {
-          backgroundColor: '#1a1a28', borderColor: '#2a2a45', borderWidth: 1,
-          callbacks: { label: (item) => `${item.dataset.label}: ${item.raw.toFixed(1)}%` }
-        }
+        legend:{labels:{boxWidth:isMobile?8:12,padding:isMobile?8:14}},
+        tooltip:{backgroundColor:'#1a1a28',borderColor:'#2a2a45',borderWidth:1,
+          callbacks:{label:(it)=>`${it.dataset.label}: ${it.raw.toFixed(1)}%`}}
       },
       scales: {
-        x: { grid: { display: false }, ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: isMobile ? 5 : 10 } },
-        y: { grid: { color: '#1c1c2e44' }, ticks: { callback: v => v + '%' }, min: 20, max: 80 }
+        x:{grid:{display:false},ticks:{maxRotation:0,autoSkip:true,maxTicksLimit:isMobile?5:10}},
+        y:{grid:{color:'#1c1c2e44'},ticks:{callback:v=>v+'%'},min:20,max:80}
       }
     }
   });
-
-  section.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-// ─── Period Buttons ─────────────────────────────────────────────────────
+// ─── Period ─────────────────────────────────────────────────────────
 document.querySelectorAll('.period-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelector('.period-btn.active').classList.remove('active');
@@ -625,19 +549,13 @@ document.querySelectorAll('.period-btn').forEach(btn => {
   });
 });
 
-// ─── Init ───────────────────────────────────────────────────────────────
-loadData();
+// ─── Start ──────────────────────────────────────────────────────────
+init();
 
-// ─── imweb iframe auto-height ───────────────────────────────────────────
-function postHeight() {
-  const h = document.documentElement.scrollHeight;
-  window.parent.postMessage({ type: 'resize', height: h }, '*');
-  window.parent.postMessage({ height: h }, '*');
-  window.parent.postMessage(JSON.stringify({ event: 'setHeight', height: h }), '*');
-}
-const heightObserver = new ResizeObserver(() => postHeight());
-heightObserver.observe(document.body);
-window.addEventListener('load', () => setTimeout(postHeight, 500));
+// ─── imweb iframe ───────────────────────────────────────────────────
+function postHeight(){const h=document.documentElement.scrollHeight;window.parent.postMessage({type:'resize',height:h},'*');window.parent.postMessage({height:h},'*');window.parent.postMessage(JSON.stringify({event:'setHeight',height:h}),'*');}
+new ResizeObserver(()=>postHeight()).observe(document.body);
+window.addEventListener('load',()=>setTimeout(postHeight,500));
 </script>
 </body>
 </html>

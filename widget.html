@@ -6,131 +6,80 @@
 <title>롱숏 TOP 5 위젯</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #08080d;
-  --bg-card: #101018;
-  --border: #1c1c2e;
-  --text: #e8e8f0;
-  --muted: #555570;
-  --green: #00d68f;
-  --red: #ff3d71;
-}
-* { margin:0; padding:0; box-sizing:border-box; }
-body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', sans-serif; }
-
-.widget {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  padding: 12px;
-  max-width: 600px;
-}
-
-.box {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 12px 14px;
-}
-
-.box h3 {
-  font-size: 12px;
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-.box.long-box h3 { color: var(--green); }
-.box.short-box h3 { color: var(--red); }
-
-.item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 5px 0;
-  border-bottom: 1px solid #1c1c2e60;
-  font-size: 12px;
-}
-.item:last-child { border-bottom: none; }
-
-.item .left {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.item img { width: 16px; height: 16px; border-radius: 50%; }
-.item .sym { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 12px; }
-
-.item .pct {
-  font-family: 'JetBrains Mono', monospace;
-  font-weight: 600;
-  font-size: 12px;
-}
-.long-box .pct { color: var(--green); }
-.short-box .pct { color: var(--red); }
-
-.footer {
-  text-align: center;
-  font-size: 9px;
-  color: var(--muted);
-  padding: 6px;
-}
-
-@media (max-width: 400px) {
-  .widget { grid-template-columns: 1fr; }
-}
+:root { --bg:#08080d;--bg-card:#101018;--border:#1c1c2e;--text:#e8e8f0;--muted:#555570;--green:#00d68f;--red:#ff3d71; }
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif}
+.widget{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px;max-width:600px}
+.box{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px}
+.box h3{font-size:12px;font-weight:600;margin-bottom:8px}
+.box.long-box h3{color:var(--green)}
+.box.short-box h3{color:var(--red)}
+.item{display:flex;align-items:center;justify-content:space-between;padding:5px 0;border-bottom:1px solid #1c1c2e60;font-size:12px}
+.item:last-child{border-bottom:none}
+.item .left{display:flex;align-items:center;gap:6px}
+.item img{width:16px;height:16px;border-radius:50%}
+.item .sym{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:12px}
+.item .pct{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:12px}
+.long-box .pct{color:var(--green)}
+.short-box .pct{color:var(--red)}
+.footer{text-align:center;font-size:9px;color:var(--muted);padding:6px}
+@media(max-width:400px){.widget{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-
-<div class="widget" id="widget">
-  <div class="box long-box">
-    <h3>🟢 롱 과밀 TOP 5</h3>
-    <div id="longList">로딩 중...</div>
-  </div>
-  <div class="box short-box">
-    <h3>🔴 숏 과밀 TOP 5</h3>
-    <div id="shortList">로딩 중...</div>
-  </div>
+<div class="widget">
+  <div class="box long-box"><h3>🟢 롱 과밀 TOP 5</h3><div id="longList">로딩 중...</div></div>
+  <div class="box short-box"><h3>🔴 숏 과밀 TOP 5</h3><div id="shortList">로딩 중...</div></div>
 </div>
-<div class="footer">Binance 글로벌 롱숏 비율 기준 · 자동 업데이트</div>
+<div class="footer">Binance 글로벌 롱숏 비율 · 실시간</div>
 
 <script>
+async function fetchLS(symbol) {
+  try {
+    const r = await fetch(`https://fapi.binance.com/futures/data/globalLongShortAccountRatio?symbol=${symbol}USDT&period=1h&limit=1`);
+    if (!r.ok) return null;
+    const d = await r.json();
+    if (d && d.length) return { long: +d[0].longAccount, short: +d[0].shortAccount };
+  } catch(e) {}
+  return null;
+}
+
 async function load() {
   try {
     const resp = await fetch('data/coins.json');
     const data = await resp.json();
-    const coins = data.coins.filter(c => c.binance?.global_account?.long);
-    const sorted = [...coins].sort((a, b) =>
-      b.binance.global_account.long - a.binance.global_account.long
-    );
+    const coins = data.coins;
 
-    const topLong = sorted.slice(0, 5);
-    const topShort = sorted.slice(-5).reverse();
+    // Fetch Binance data for all coins
+    const results = [];
+    for (let i = 0; i < coins.length; i += 5) {
+      const batch = coins.slice(i, i+5);
+      const rs = await Promise.all(batch.map(c => fetchLS(c.symbol)));
+      rs.forEach((r,j) => { if(r) results.push({...batch[j], ...r}); });
+      if (i+5 < coins.length) await new Promise(r=>setTimeout(r,250));
+    }
 
-    document.getElementById('longList').innerHTML = topLong.map(c => {
-      const p = (c.binance.global_account.long * 100).toFixed(1);
+    results.sort((a,b) => b.long - a.long);
+    const topLong = results.slice(0, 5);
+    const topShort = results.slice(-5).reverse();
+
+    const render = (list, type) => list.map(c => {
+      const p = type==='long' ? (c.long*100).toFixed(1) : (c.short*100).toFixed(1);
       return `<div class="item"><div class="left"><img src="${c.image}" onerror="this.style.display='none'"><span class="sym">${c.symbol}</span></div><span class="pct">${p}%</span></div>`;
     }).join('');
 
-    document.getElementById('shortList').innerHTML = topShort.map(c => {
-      const p = ((1 - c.binance.global_account.long) * 100).toFixed(1);
-      return `<div class="item"><div class="left"><img src="${c.image}" onerror="this.style.display='none'"><span class="sym">${c.symbol}</span></div><span class="pct">${p}%</span></div>`;
-    }).join('');
-  } catch (e) {
+    document.getElementById('longList').innerHTML = render(topLong,'long');
+    document.getElementById('shortList').innerHTML = render(topShort,'short');
+  } catch(e) {
     document.getElementById('longList').textContent = '로딩 실패';
     document.getElementById('shortList').textContent = '로딩 실패';
   }
 }
-
 load();
 
-// Auto-height for iframe
-function postHeight() {
-  const h = document.documentElement.scrollHeight;
-  window.parent.postMessage({ type: 'resize', height: h }, '*');
-  window.parent.postMessage({ height: h }, '*');
-}
-new ResizeObserver(() => postHeight()).observe(document.body);
-window.addEventListener('load', () => setTimeout(postHeight, 300));
+function postHeight(){const h=document.documentElement.scrollHeight;window.parent.postMessage({type:'resize',height:h},'*');window.parent.postMessage({height:h},'*');}
+new ResizeObserver(()=>postHeight()).observe(document.body);
+window.addEventListener('load',()=>setTimeout(postHeight,300));
 </script>
 </body>
 </html>
