@@ -76,8 +76,16 @@ body::-webkit-scrollbar { display: none; }
 .coin-table { width:100%;border-collapse:collapse;font-size:13px;min-width:760px; }
 .coin-table th { padding:8px 10px;font-size:10px;font-weight:500;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid var(--border);text-align:right;white-space:nowrap;cursor:pointer;user-select:none; }
 .coin-table th:first-child,.coin-table th:nth-child(2){text-align:left}
-.coin-table th:hover{color:var(--text-secondary)}
+.coin-table th:hover{color:var(--text-secondary);background:var(--bg-elevated);border-radius:4px}
 .coin-table th.sorted{color:var(--blue)}
+.sort-icon{font-size:10px;margin-left:2px;opacity:0.3}
+.coin-table th.sorted .sort-icon{opacity:1;color:var(--blue)}
+.search-wrap{position:relative;margin-bottom:14px}
+.search-input{width:100%;padding:10px 14px 10px 38px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:8px;color:var(--text-primary);font-size:14px;font-family:'Noto Sans KR',sans-serif;outline:none;transition:border-color .2s}
+.search-input:focus{border-color:var(--blue)}
+.search-input::placeholder{color:var(--text-muted)}
+.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:14px;pointer-events:none}
+.search-count{font-size:11px;color:var(--text-muted);margin-top:6px}
 .coin-table td { padding:10px;border-bottom:1px solid var(--border);text-align:right;font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;color:var(--text-primary); }
 .coin-table td:first-child{text-align:center;color:var(--text-muted);font-size:11px;width:30px}
 .coin-table td:nth-child(2){text-align:left;font-family:'Noto Sans KR',sans-serif}
@@ -155,6 +163,11 @@ body::-webkit-scrollbar { display: none; }
   <div class="section">
     <div class="section-title">📋 전체 코인 롱숏 비율</div>
     <div class="section-subtitle">Binance · Bybit 실시간 롱/숏 비율 · 코인을 클릭하면 상세 차트</div>
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" class="search-input" id="coinSearch" placeholder="코인 검색 (이름 또는 심볼)" autocomplete="off">
+      <div class="search-count" id="searchCount"></div>
+    </div>
     <div class="table-wrap" id="coinTableWrap">
       <div class="loading"><div class="spinner"></div>데이터 로딩 중...</div>
     </div>
@@ -377,9 +390,28 @@ function sigItem(coin, type) {
 }
 
 // ─── Coin Table ─────────────────────────────────────────────────────
+let searchQuery = '';
+
 function renderCoinTable() {
-  const coins = sortCoins([...allCoins], currentSort.col, currentSort.dir);
-  const si=(c)=>currentSort.col===c?(currentSort.dir==='asc'?' ↑':' ↓'):'';
+  let coins = [...allCoins];
+
+  // 검색 필터
+  if (searchQuery) {
+    const q = searchQuery.toLowerCase();
+    coins = coins.filter(c => c.symbol.toLowerCase().includes(q) || (c.name||'').toLowerCase().includes(q));
+  }
+
+  coins = sortCoins(coins, currentSort.col, currentSort.dir);
+
+  // 검색 카운트
+  const countEl = document.getElementById('searchCount');
+  if (searchQuery) {
+    countEl.textContent = `${coins.length}개 코인 검색됨`;
+  } else {
+    countEl.textContent = '';
+  }
+
+  const si=(c)=>currentSort.col===c?`<span class="sort-icon">${currentSort.dir==='asc'?' ↑':' ↓'}</span>`:'<span class="sort-icon"> ↕</span>';
   const sc=(c)=>currentSort.col===c?'sorted':'';
 
   let h = `<table class="coin-table"><thead><tr>
@@ -418,8 +450,16 @@ function renderCoinTable() {
   });
 
   h += '</tbody></table>';
+  if (!coins.length) {
+    h = `<table class="coin-table"><thead><tr><th colspan="8" style="text-align:center;color:var(--text-muted);padding:24px;font-family:Noto Sans KR,sans-serif">검색 결과가 없습니다</th></tr></thead></table>`;
+  }
   document.getElementById('coinTableWrap').innerHTML = h;
 }
+
+document.getElementById('coinSearch').addEventListener('input', function(){
+  searchQuery = this.value.trim();
+  renderCoinTable();
+});
 
 // ─── Sort ───────────────────────────────────────────────────────────
 function sortCoins(coins, col, dir) {
