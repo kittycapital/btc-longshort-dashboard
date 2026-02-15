@@ -28,7 +28,7 @@
   --hv-radius-sm:6px;--hv-radius-md:10px;--hv-radius-lg:14px;
   --hv-shadow-sm:0 1px 3px rgba(0,0,0,.5);--hv-shadow-lg:0 8px 32px rgba(0,0,0,.7);
   --hv-transition-fast:150ms ease;--hv-transition:250ms ease;
-  --hv-max-width:1280px;--hv-header-height:60px;
+  --hv-max-width:1280px;--hv-header-height:56px;
   --blue:#4a9eff;--cyan:#00e5cc;--green:#00d68f;--red:#ff3d71;--orange:#ff8c42;--purple:#a855f7;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -39,10 +39,11 @@ a{color:var(--hv-primary-light);text-decoration:none}
 ::selection{background:var(--hv-primary);color:#fff}
 
 .hv-header{position:sticky;top:0;z-index:100;height:var(--hv-header-height);background:rgba(0,0,0,.9);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--hv-border);display:flex;align-items:center;padding:0 var(--hv-space-lg)}
-.hv-header-inner{width:100%;max-width:var(--hv-max-width);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:var(--hv-space-md)}
-.hv-header-center h1{font-family:var(--hv-font-display);font-size:.938rem;font-weight:600;color:var(--hv-text-primary);white-space:nowrap}
+.hv-header-inner{width:100%;max-width:var(--hv-max-width);margin:0 auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+.hv-header-center{display:flex;flex-direction:column;align-items:center;text-align:center;min-width:0}
+.hv-header-center h1{font-family:var(--hv-font-display);font-size:1.3rem;font-weight:600;color:var(--hv-text-primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .hv-header-category{font-size:.7rem;color:var(--hv-text-tertiary);font-weight:500;text-transform:uppercase;letter-spacing:.08em}
-.hv-header-right{display:flex;align-items:center;gap:var(--hv-space-xs);flex-shrink:0}
+.hv-header-right{display:flex;align-items:center;justify-content:flex-end;gap:var(--hv-space-xs);flex-shrink:0}
 .hv-update-badge{font-family:var(--hv-font-mono);font-size:.688rem;color:var(--hv-text-tertiary);white-space:nowrap;display:flex;align-items:center;gap:6px}
 .hv-live-dot{width:5px;height:5px;background:var(--hv-up);border-radius:50%;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
@@ -51,12 +52,12 @@ a{color:var(--hv-primary-light);text-decoration:none}
 .dash-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
 .card{background:var(--hv-bg-card);border:1px solid var(--hv-border);border-radius:var(--hv-radius-lg);padding:18px 20px 16px;position:relative;overflow:visible;animation:fadeUp .5s ease both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.card-label{font-family:var(--hv-font-mono);font-size:10px;font-weight:500;color:var(--hv-text-muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px}
-.card-title{font-size:15px;font-weight:700;margin-bottom:2px;display:flex;align-items:center;gap:7px}
-.card-desc{font-size:11.5px;color:var(--hv-text-secondary);margin-bottom:14px;line-height:1.5}
+.card-label{font-family:var(--hv-font-mono);font-size:10px;font-weight:500;color:var(--hv-text-muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px;text-align:center}
+.card-title{font-size:15px;font-weight:700;margin-bottom:2px;display:flex;align-items:center;justify-content:center;gap:7px}
+.card-desc{font-size:11.5px;color:var(--hv-text-secondary);margin-bottom:14px;line-height:1.5;text-align:center}
 .s12{grid-column:span 12}
 
-.status-bar{display:flex;gap:14px;font-size:10px;color:var(--hv-text-tertiary);flex-wrap:wrap}
+.status-bar{display:flex;gap:14px;font-size:10px;color:var(--hv-text-tertiary);flex-wrap:wrap;justify-content:center}
 .ok{color:var(--green)}.ld{color:var(--orange)}.fl{color:var(--red)}
 
 /* MAJOR GRID */
@@ -71,13 +72,13 @@ a{color:var(--hv-primary-light);text-decoration:none}
 .major-card .mc-val{font-family:var(--hv-font-mono);font-weight:600}
 
 /* TABS */
-.tabs{display:flex;gap:4px;margin-bottom:14px}
+.tabs{display:flex;gap:4px;margin-bottom:14px;justify-content:center}
 .tab{padding:6px 16px;border:1px solid var(--hv-border);border-radius:6px;font-family:var(--hv-font-mono);font-size:12px;color:var(--hv-text-secondary);cursor:pointer;transition:all .2s}
 .tab:hover{border-color:var(--hv-border-strong);color:var(--hv-text-primary)}
 .tab.active{background:var(--blue);color:#fff;border-color:var(--blue);font-weight:600}
 
 /* CHART */
-.chart-wrap{position:relative;width:100%;height:380px}
+.chart-wrap{position:relative;width:100%;height:420px}
 .chart-wrap canvas{width:100%!important;height:100%!important}
 .chart-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:14px}
 .chart-coin{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:700}
@@ -150,22 +151,25 @@ a{color:var(--hv-primary-light);text-decoration:none}
   .hv-page{padding:var(--hv-space-md)}.hv-header{padding:0 var(--hv-space-md)}
   .hv-update-badge{display:none}.dash-grid{gap:10px}
   .card{padding:14px 14px 12px}.card-title{font-size:14px}
+  .hv-header-center h1{font-size:1.1rem}
   .major-grid{grid-template-columns:repeat(2,1fr)}
-  .chart-wrap{height:320px}
+  .chart-wrap{height:340px}
   .share-bar{flex-direction:column;gap:10px;align-items:stretch}
   .share-bar-preview{max-width:100%}
   .share-bar-buttons{justify-content:center;flex-wrap:wrap}
   .share-btn span.label-text{display:none}.share-btn{padding:8px 10px}
 }
-@media(max-width:520px){.hv-page{padding:12px 10px 24px}.chart-wrap{height:280px}}
+@media(max-width:520px){.hv-page{padding:12px 10px 24px}.chart-wrap{height:300px}}
+@media(max-width:380px){.hv-header-center h1{font-size:1rem}}
 </style>
 </head>
 <body>
 
 <header class="hv-header">
   <div class="hv-header-inner">
+    <div></div>
     <div class="hv-header-center">
-      <h1>📊 롱숏 비율 대시보드</h1>
+      <h1>롱숏 비율 대시보드</h1>
       <span class="hv-header-category">Long/Short · Full Dashboard</span>
     </div>
     <div class="hv-header-right">
@@ -180,7 +184,7 @@ a{color:var(--hv-primary-light);text-decoration:none}
     <!-- STATUS -->
     <div class="card s12">
       <div class="card-label">DATA STATUS</div>
-      <div class="card-title">⚡ 데이터 연결 상태</div>
+      <div class="card-title">데이터 연결 상태</div>
       <div class="status-bar">
         <span>코인목록: <span id="sCoins" class="ld">···</span></span>
         <span>Binance: <span id="sBn" class="ld">···</span></span>
@@ -191,7 +195,7 @@ a{color:var(--hv-primary-light);text-decoration:none}
     <!-- MAJOR 5 -->
     <div class="card s12">
       <div class="card-label">MAJOR COINS</div>
-      <div class="card-title">🏆 메이저 코인 롱숏</div>
+      <div class="card-title">메이저 코인 롱숏</div>
       <div class="card-desc">BTC, ETH, XRP, BNB, SOL — 클릭하면 차트 전환</div>
       <div class="major-grid" id="majorGrid"></div>
     </div>
@@ -199,7 +203,7 @@ a{color:var(--hv-primary-light);text-decoration:none}
     <!-- CHART -->
     <div class="card s12" id="chartCard">
       <div class="card-label">LONG/SHORT HISTORY</div>
-      <div class="card-title">📈 롱숏 비율 추이</div>
+      <div class="card-title">롱숏 비율 추이</div>
       <div class="card-desc">코인별 롱/숏 계정 비율 히스토리</div>
       <div class="tabs" id="periodTabs">
         <div class="tab active" data-period="1">1일</div>
@@ -223,7 +227,7 @@ a{color:var(--hv-primary-light);text-decoration:none}
     <!-- FULL TABLE -->
     <div class="card s12">
       <div class="card-label">ALL COINS</div>
-      <div class="card-title">📋 전체 코인 롱숏 비율</div>
+      <div class="card-title">전체 코인 롱숏 비율</div>
       <div class="card-desc">Binance · Bybit 실시간 롱/숏 비율 · 코인을 클릭하면 차트 전환</div>
       <div class="search-wrap">
         <span class="search-icon">🔍</span>
@@ -279,9 +283,9 @@ function getBest(sym){
   return null;
 }
 function getSignal(longPct){
-  if(longPct>=0.70)return{cls:'extreme_long',text:'🟢 극단 롱'};
+  if(longPct>=0.70)return{cls:'extreme_long',text:'극단 롱'};
   if(longPct>=0.60)return{cls:'long',text:'롱 과밀'};
-  if(longPct<=0.30)return{cls:'extreme_short',text:'🔴 극단 숏'};
+  if(longPct<=0.30)return{cls:'extreme_short',text:'극단 숏'};
   if(longPct<=0.40)return{cls:'short',text:'숏 과밀'};
   return{cls:'neutral',text:'-'};
 }
@@ -429,7 +433,6 @@ async function selectCoin(sym){
 
   if(hist.length===0){document.querySelector('.chart-wrap').innerHTML='<div class="loading">히스토리 데이터가 없습니다</div>';return;}
 
-  // Restore canvas if replaced
   if(!document.getElementById('mainChart')){document.querySelector('.chart-wrap').innerHTML='<canvas id="mainChart"></canvas>';}
 
   var cutoff=new Date();cutoff.setDate(cutoff.getDate()-periodDays);
