@@ -423,7 +423,7 @@ async function selectCoin(sym){
     +'</div>';
 
   var periodDays=parseInt(document.querySelector('.tab.active').dataset.period);
-  var limit=periodDays<=1?24:periodDays<=7?42:180;
+ var limit=periodDays<=1?24:periodDays<=7?42:250;
   var period=periodDays<=1?'1h':'4h';
 
   var bnHist=await fetchBinanceHistory(sym,period,limit);
