@@ -78,7 +78,7 @@ a{color:var(--hv-primary-light);text-decoration:none}
 .tab.active{background:var(--blue);color:#fff;border-color:var(--blue);font-weight:600}
 
 /* CHART */
-.chart-wrap{position:relative;width:100%;height:420px}
+.chart-wrap{position:relative;width:100%;height:480px;overflow:visible}
 .chart-wrap canvas{width:100%!important;height:100%!important}
 .chart-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:14px}
 .chart-coin{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:700}
@@ -153,13 +153,13 @@ a{color:var(--hv-primary-light);text-decoration:none}
   .card{padding:14px 14px 12px}.card-title{font-size:14px}
   .hv-header-center h1{font-size:1.1rem}
   .major-grid{grid-template-columns:repeat(2,1fr)}
-  .chart-wrap{height:340px}
+  .chart-wrap{height:400px}
   .share-bar{flex-direction:column;gap:10px;align-items:stretch}
   .share-bar-preview{max-width:100%}
   .share-bar-buttons{justify-content:center;flex-wrap:wrap}
   .share-btn span.label-text{display:none}.share-btn{padding:8px 10px}
 }
-@media(max-width:520px){.hv-page{padding:12px 10px 24px}.chart-wrap{height:300px}}
+@media(max-width:520px){.hv-page{padding:12px 10px 24px}.chart-wrap{height:360px}}
 @media(max-width:380px){.hv-header-center h1{font-size:1rem}}
 </style>
 </head>
@@ -449,6 +449,7 @@ async function selectCoin(sym){
     ]},
     options:{
       responsive:true,maintainAspectRatio:false,
+      layout:{padding:{top:10,bottom:10,left:5,right:10}},
       interaction:{intersect:false,mode:'index'},
       plugins:{
         legend:{labels:{color:'#8a8a8a',font:{family:"'Noto Sans KR',sans-serif",size:11},boxWidth:10,padding:14,filter:function(item){return item.text!=='50% 기준선';}}},
